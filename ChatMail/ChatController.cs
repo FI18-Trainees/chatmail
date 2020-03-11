@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System;
+using DBConnectorTest;
+using ChatMail;
 
 namespace System
 {
@@ -7,9 +9,11 @@ namespace System
 	{
 		private string name;
 
+        private ChatGUI chatGUI;
+
 		private List<User> allUser;
 
-		private DatabaseConnector databaseInstance;
+		private DBConnector databaseInstance;
 
 		public void sendMessage(Message message)
 		{

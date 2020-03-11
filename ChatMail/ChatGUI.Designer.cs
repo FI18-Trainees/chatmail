@@ -1,6 +1,6 @@
 ﻿namespace ChatMail
 {
-    partial class Form1
+    partial class ChatGUI
     {
         /// <summary>
         ///  Required designer variable.

@@ -1,0 +1,3 @@
+User(uID, vorname, nachname, displayname)
+Message(mId, content, timestamp, senderId)
+MessageReceiver(Id, mId, rId)
