@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ChatMail
 {
-    public partial class Form1 : Form
+    public partial class ChatGUI : Form
     {
-        public Form1()
+        public ChatGUI()
         {
             InitializeComponent();
         }
