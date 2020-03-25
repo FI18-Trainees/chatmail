@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.sendMessageGroupBox = new System.Windows.Forms.GroupBox();
+            this.sendMessageInputTextBox = new System.Windows.Forms.TextBox();
+            this.sendMessageSubmitButton = new System.Windows.Forms.Button();
+            this.sendMessageRecieverLabel = new System.Windows.Forms.Label();
+            this.sendMessageRecieverListBox = new System.Windows.Forms.ListBox();
             this.recievedMessageGroupBox = new System.Windows.Forms.GroupBox();
             this.recievedMessagesTextBox = new System.Windows.Forms.TextBox();
-            this.sendMessageRecieverListBox = new System.Windows.Forms.ListBox();
-            this.sendMessageRecieverLabel = new System.Windows.Forms.Label();
-            this.sendMessageSubmitButton = new System.Windows.Forms.Button();
-            this.sendMessageInputTextBox = new System.Windows.Forms.TextBox();
             this.sendMessageGroupBox.SuspendLayout();
             this.recievedMessageGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -51,6 +51,41 @@
             this.sendMessageGroupBox.TabIndex = 0;
             this.sendMessageGroupBox.TabStop = false;
             this.sendMessageGroupBox.Text = "Send message";
+            // 
+            // sendMessageInputTextBox
+            // 
+            this.sendMessageInputTextBox.Location = new System.Drawing.Point(6, 86);
+            this.sendMessageInputTextBox.Multiline = true;
+            this.sendMessageInputTextBox.Name = "sendMessageInputTextBox";
+            this.sendMessageInputTextBox.Size = new System.Drawing.Size(1228, 226);
+            this.sendMessageInputTextBox.TabIndex = 3;
+            // 
+            // sendMessageSubmitButton
+            // 
+            this.sendMessageSubmitButton.Location = new System.Drawing.Point(366, 34);
+            this.sendMessageSubmitButton.Name = "sendMessageSubmitButton";
+            this.sendMessageSubmitButton.Size = new System.Drawing.Size(868, 43);
+            this.sendMessageSubmitButton.TabIndex = 2;
+            this.sendMessageSubmitButton.Text = "Submit";
+            this.sendMessageSubmitButton.UseVisualStyleBackColor = true;
+            // 
+            // sendMessageRecieverLabel
+            // 
+            this.sendMessageRecieverLabel.AutoSize = true;
+            this.sendMessageRecieverLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sendMessageRecieverLabel.Location = new System.Drawing.Point(2, 44);
+            this.sendMessageRecieverLabel.Name = "sendMessageRecieverLabel";
+            this.sendMessageRecieverLabel.Size = new System.Drawing.Size(75, 20);
+            this.sendMessageRecieverLabel.TabIndex = 1;
+            this.sendMessageRecieverLabel.Text = "Reciever:";
+            // 
+            // sendMessageRecieverListBox
+            // 
+            this.sendMessageRecieverListBox.FormattingEnabled = true;
+            this.sendMessageRecieverListBox.Location = new System.Drawing.Point(83, 34);
+            this.sendMessageRecieverListBox.Name = "sendMessageRecieverListBox";
+            this.sendMessageRecieverListBox.Size = new System.Drawing.Size(277, 43);
+            this.sendMessageRecieverListBox.TabIndex = 0;
             // 
             // recievedMessageGroupBox
             // 
@@ -69,41 +104,6 @@
             this.recievedMessagesTextBox.Name = "recievedMessagesTextBox";
             this.recievedMessagesTextBox.Size = new System.Drawing.Size(1228, 308);
             this.recievedMessagesTextBox.TabIndex = 0;
-            // 
-            // sendMessageRecieverListBox
-            // 
-            this.sendMessageRecieverListBox.FormattingEnabled = true;
-            this.sendMessageRecieverListBox.Location = new System.Drawing.Point(123, 34);
-            this.sendMessageRecieverListBox.Name = "sendMessageRecieverListBox";
-            this.sendMessageRecieverListBox.Size = new System.Drawing.Size(237, 43);
-            this.sendMessageRecieverListBox.TabIndex = 0;
-            // 
-            // sendMessageRecieverLabel
-            // 
-            this.sendMessageRecieverLabel.AutoSize = true;
-            this.sendMessageRecieverLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sendMessageRecieverLabel.Location = new System.Drawing.Point(6, 37);
-            this.sendMessageRecieverLabel.Name = "sendMessageRecieverLabel";
-            this.sendMessageRecieverLabel.Size = new System.Drawing.Size(71, 20);
-            this.sendMessageRecieverLabel.TabIndex = 1;
-            this.sendMessageRecieverLabel.Text = "Reciever";
-            // 
-            // sendMessageSubmitButton
-            // 
-            this.sendMessageSubmitButton.Location = new System.Drawing.Point(528, 34);
-            this.sendMessageSubmitButton.Name = "sendMessageSubmitButton";
-            this.sendMessageSubmitButton.Size = new System.Drawing.Size(75, 23);
-            this.sendMessageSubmitButton.TabIndex = 2;
-            this.sendMessageSubmitButton.Text = "Submit";
-            this.sendMessageSubmitButton.UseVisualStyleBackColor = true;
-            // 
-            // sendMessageInputTextBox
-            // 
-            this.sendMessageInputTextBox.Location = new System.Drawing.Point(6, 86);
-            this.sendMessageInputTextBox.Multiline = true;
-            this.sendMessageInputTextBox.Name = "sendMessageInputTextBox";
-            this.sendMessageInputTextBox.Size = new System.Drawing.Size(1228, 226);
-            this.sendMessageInputTextBox.TabIndex = 3;
             // 
             // ChatGUI
             // 

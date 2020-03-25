@@ -15,13 +15,17 @@ namespace ChatMail
 
 		private DBConnector databaseInstance;
 
+		public void InitializeGUI()
+		{
+
+		}
 		
-		public void sendMessage(Message message)
+		public void SendMessage(Message message)
 		{
 
 		}
 
-		public List<Message> receiveMessages(int userId)
+		public List<Message> ReceiveMessages(int userId)
 		{
 			return null;
 		}
