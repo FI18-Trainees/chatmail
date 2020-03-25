@@ -1,4 +1,4 @@
-namespace System
+namespace ChatMail.Models
 {
 	public class User
 	{

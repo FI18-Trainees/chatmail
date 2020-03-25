@@ -1,6 +1,6 @@
 using System;
 
-namespace System
+namespace ChatMail.Models
 {
 	public class Message
 	{
