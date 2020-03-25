@@ -19,4 +19,4 @@ jobs:
       - name: Dotnet Build
         run: |
           dotnet clean
-          dotnet builder -c Release -o deploy
+          dotnet build -c Release
