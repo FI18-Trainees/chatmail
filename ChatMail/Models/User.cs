@@ -10,7 +10,13 @@ namespace System
 
 		private readonly string displayname;
 
-
+        /// <summary>
+        /// Constructor of the user
+        /// </summary>
+        /// <param name="uId">Id of user</param>
+        /// <param name="firstname">first name of user</param>
+        /// <param name="lastname">last name of user</param>
+        /// <param name="displayname">displayname of user used in chat</param>
         public User(int uId, string firstname, string lastname, string displayname)
         {
             this.uId = uId;
@@ -19,6 +25,9 @@ namespace System
             this.displayname = displayname;
         }
 
+        /// <summary>
+        /// Getters for properties
+        /// </summary>
         public int UId => uId;
         public string Firstname => firstname;
         public string Lastname => lastname;
