@@ -2,15 +2,27 @@ namespace System
 {
 	public class User
 	{
-		private int uId;
+		private readonly int uId;
 
-		private string firstname;
+		private readonly string firstname;
 
-		private string lastname;
+		private readonly string lastname;
 
-		private string displayname;
+		private readonly string displayname;
 
-	}
 
+        public User(int uId, string firstname, string lastname, string displayname)
+        {
+            this.uId = uId;
+            this.firstname = firstname;
+            this.lastname = lastname;
+            this.displayname = displayname;
+        }
+
+        public int UId => uId;
+        public string Firstname => firstname;
+        public string Lastname => lastname;
+        public string Displayname => displayname;
+    }
 }
 
