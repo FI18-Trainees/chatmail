@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace ChatMail.Models
 {
@@ -12,7 +13,7 @@ namespace ChatMail.Models
 
 		private readonly User sender;
 
-		private readonly User receiver;
+		private readonly List<User> receiver;
 
         /// <summary>
         /// Constructor for the message
@@ -22,7 +23,7 @@ namespace ChatMail.Models
         /// <param name="timestamp">Timestamp of message</param>
         /// <param name="sender">User which sent the message</param>
         /// <param name="reciever">User which recieves the message</param>
-        public Message(int mId, string content, DateTime timestamp, User sender, User reciever)
+        public Message(int mId, string content, DateTime timestamp, User sender, List<User> receiver)
         {
             this.mId = mId;
             this.content = content;
@@ -38,7 +39,7 @@ namespace ChatMail.Models
         public string Content => content;
         public DateTime Timestamp => timestamp;
         public User Sender => sender;
-        public User Receiver => receiver;
+        public List<User> Receiver => receiver;
     }
 
 

@@ -8,6 +8,21 @@
 
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="8.0.19" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="config\config-default.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="config\config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="SQL\selectAllUsers.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties config_4config-default_1json__JsonSchema="http://json-schema.org/draft-04/schema" config_4config_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

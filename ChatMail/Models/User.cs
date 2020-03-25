@@ -1,3 +1,6 @@
+using MySql.Data.MySqlClient;
+using System.Data;
+
 namespace ChatMail.Models
 {
 	public class User
@@ -23,6 +26,21 @@ namespace ChatMail.Models
             this.firstname = firstname;
             this.lastname = lastname;
             this.displayname = displayname;
+        }
+
+        public User(string firstname, string lastname, string displayname)
+        {
+            this.firstname = firstname;
+            this.lastname = lastname;
+            this.displayname = displayname;
+        }
+
+        public User(DataRow row)
+        {
+            this.uId = int.Parse(row["uId"].ToString());
+            this.firstname = row["firstname"].ToString();
+            this.lastname = row["lastname"].ToString();
+            this.displayname = row["displayname"].ToString();
         }
 
         /// <summary>

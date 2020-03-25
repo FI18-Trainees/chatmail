@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System;
-using DBConnectorTest;
+using ChatMail.Database;
 using ChatMail.Models;
 
 namespace ChatMail
@@ -15,7 +15,6 @@ namespace ChatMail
 
 		private DBConnector databaseInstance;
 
-		
 		public void sendMessage(Message message)
 		{
 
