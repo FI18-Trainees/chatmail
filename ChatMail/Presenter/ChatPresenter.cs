@@ -46,7 +46,7 @@ namespace ChatMail.Presenter
         public void SubmitClicked()
         {
             
-            m_dao.SendMessage();
+            m_dao.SendMessage(null);
             Update();
         }
     }
