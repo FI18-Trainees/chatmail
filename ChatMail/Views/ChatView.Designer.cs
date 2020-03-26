@@ -1,6 +1,6 @@
-﻿namespace ChatMail
+﻿namespace ChatMail.Views
 {
-    partial class ChatGUI
+    partial class ChatView
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.sendMessageGroupBox = new System.Windows.Forms.GroupBox();
             this.sendMessageInputTextBox = new System.Windows.Forms.TextBox();
             this.sendMessageSubmitButton = new System.Windows.Forms.Button();
@@ -35,8 +36,10 @@
             this.sendMessageRecieverListBox = new System.Windows.Forms.ListBox();
             this.recievedMessageGroupBox = new System.Windows.Forms.GroupBox();
             this.recievedMessagesTextBox = new System.Windows.Forms.TextBox();
+            this.chatViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sendMessageGroupBox.SuspendLayout();
             this.recievedMessageGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chatViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // sendMessageGroupBox
@@ -105,19 +108,24 @@
             this.recievedMessagesTextBox.Size = new System.Drawing.Size(1228, 308);
             this.recievedMessagesTextBox.TabIndex = 0;
             // 
-            // ChatGUI
+            // chatViewModelBindingSource
+            // 
+            this.chatViewModelBindingSource.AllowNew = false;
+            // 
+            // ChatView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.recievedMessageGroupBox);
             this.Controls.Add(this.sendMessageGroupBox);
-            this.Name = "ChatGUI";
+            this.Name = "ChatView";
             this.Text = "ChatMail";
             this.sendMessageGroupBox.ResumeLayout(false);
             this.sendMessageGroupBox.PerformLayout();
             this.recievedMessageGroupBox.ResumeLayout(false);
             this.recievedMessageGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chatViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -131,6 +139,7 @@
         private System.Windows.Forms.ListBox sendMessageRecieverListBox;
         private System.Windows.Forms.GroupBox recievedMessageGroupBox;
         private System.Windows.Forms.TextBox recievedMessagesTextBox;
+        private System.Windows.Forms.BindingSource chatViewModelBindingSource;
     }
 }
 
