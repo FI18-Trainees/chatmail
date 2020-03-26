@@ -513,3 +513,4 @@ MigrationBackup/
 /docs/uml.asta.lock
 
 config.json
+.idea/

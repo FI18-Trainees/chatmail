@@ -8,7 +8,7 @@ Schulprojekt von Yannick und Björn.
 ## Relations
 
 ```
-User(uID, firstname, lastname, displayname)
+User(uId, firstname, lastname, displayname)
 Message(mId, content, timestamp, senderId)
 MessageReceiver(Id, mId, rId)
 ```

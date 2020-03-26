@@ -1,0 +1,1 @@
+INSERT INTO chatmail.messagereceiver (mId, rId) VALUES (@MID, @RID);
