@@ -26,7 +26,7 @@ namespace ChatMail.Views
         {
             foreach (ChatViewModel viewModel in messages)
             {
-                recievedMessagesTextBox.Text += viewModel.Content;
+                receivedMessagesTextBox.Text += viewModel.Content;
             }
         }
 

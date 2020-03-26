@@ -14,7 +14,7 @@ namespace ChatMail.Models
 
         public void SendMessage(Message message)
         {
-            // Send vessage via DBHandler
+            // Send message via DBHandler
             throw new NotImplementedException();
         }
 
