@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 25. Mrz 2020 um 09:58
+-- Erstellungszeit: 25. Mrz 2020 um 14:23
 -- Server-Version: 10.4.11-MariaDB
 -- PHP-Version: 7.4.2
 
@@ -57,8 +57,8 @@ CREATE TABLE `messagereceiver` (
 
 CREATE TABLE `user` (
   `uId` int(11) NOT NULL,
-  `vorname` varchar(50) NOT NULL,
-  `nachname` varchar(50) NOT NULL,
+  `firstname` varchar(50) NOT NULL,
+  `lastname` varchar(50) NOT NULL,
   `displayname` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -107,7 +107,7 @@ ALTER TABLE `messagereceiver`
 -- AUTO_INCREMENT für Tabelle `user`
 --
 ALTER TABLE `user`
-  MODIFY `uId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `uId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT;
 
 --
 -- Constraints der exportierten Tabellen

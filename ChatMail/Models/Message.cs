@@ -1,47 +1,76 @@
 using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace ChatMail.Models
 {
 	public class Message
 	{
-		private readonly int mId;
-
-		private readonly string content;
-
-		private readonly DateTime timestamp;
-
-		private readonly User sender;
-
-		private readonly User receiver;
 
         /// <summary>
-        /// Constructor for the message
+        /// Properties
         /// </summary>
-        /// <param name="mId">Id of message</param>
-        /// <param name="content">Content of message</param>
+        public int MId { get; }
+        public string Content { get; }
+        public DateTime Timestamp { get; }
+        public User Sender { get; }
+        public List<User> Receiver { get; }
+
+        /// <summary>
+        /// Constructor for Message
+        /// </summary>
+        /// <param name="mId">Message ID</param>
+        /// <param name="content">Raw message content</param>
         /// <param name="timestamp">Timestamp of message</param>
-        /// <param name="sender">User which sent the message</param>
-        /// <param name="reciever">User which recieves the message</param>
-        public Message(int mId, string content, DateTime timestamp, User sender, User reciever)
+        /// <param name="sender">User object of sender</param>
+        /// <param name="receiver">List of user object that receive the message</param>
+        public Message(int mId, string content, DateTime timestamp, User sender, List<User> receiver)
         {
-            this.mId = mId;
-            this.content = content;
-            this.timestamp = timestamp;
-            this.sender = sender;
-            this.receiver = receiver;
+            this.MId = mId;
+            this.Content = content;
+            this.Timestamp = timestamp;
+            this.Sender = sender;
+            this.Receiver = receiver;
         }
 
-		/// <summary>
-        /// Getters for properties
+        /// <summary>
+        /// Constructor for Message
         /// </summary>
-        public int MId => mId;
-        public string Content => content;
-        public DateTime Timestamp => timestamp;
-        public User Sender => sender;
-        public User Receiver => receiver;
+        /// <param name="content">Raw message content</param>
+        /// <param name="timestamp">Timestamp of message</param>
+        /// <param name="sender">User object of sender</param>
+        /// <param name="receiver">List of user object that receive the message</param>
+        public Message(string content, DateTime timestamp, User sender, List<User> receiver)
+        {
+            this.Content = content;
+            this.Timestamp = timestamp;
+            this.Sender = sender;
+            this.Receiver = receiver;
+        }
+
+        /// <summary>
+        /// Constructor for Message
+        /// </summary>
+        /// <param name="row">DataRow object containing mId, content, timestamp</param>
+        /// <param name="sender">User object of sender</param>
+        /// <param name="receiver">List of user object that receive the message</param>
+        public Message(DataRow row, User sender, List<User> receiver)
+        {
+            this.MId = int.Parse(row["mId"].ToString());
+            this.Content = row["content"].ToString();
+            this.Timestamp = DateTime.Parse(row["timestamp"].ToString());
+            this.Sender = sender;
+            this.Receiver = receiver;
+        }
+
+        /// <summary>
+        /// Generates string of message.
+        /// </summary>
+        /// <returns>String of message.</returns>
+        public string Display()
+        {
+            string time = this.Timestamp.ToString("yyyy.MM.dd HH:mm:ss");
+            return "[" + time + "] (" + this.Sender.Displayname + "): " + this.Content;
+        }
     }
-
-
-
 }
-
