@@ -45,7 +45,8 @@ namespace ChatMail.Presenter
 
         public void SubmitClicked()
         {
-            throw new NotImplementedException();
+            
+            m_dao.SendMessage();
             Update();
         }
     }

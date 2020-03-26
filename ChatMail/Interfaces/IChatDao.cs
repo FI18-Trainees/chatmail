@@ -5,7 +5,7 @@ namespace ChatMail.Interfaces
 {
     public interface IChatDao
     {
-        Message CreateMessage();
+        void SendMessage();
 
         List<Message> GetAllMessages();
     }

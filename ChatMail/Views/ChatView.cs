@@ -35,6 +35,11 @@ namespace ChatMail.Views
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        public void ReadUserInput()
+        {
+            
+        }
+
         private void m_submit_Click(object sender, EventArgs e)
         {
             m_presenter.SubmitClicked();

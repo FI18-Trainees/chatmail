@@ -13,8 +13,9 @@ namespace ChatMail.Models
         private List<Message> m_allMessages;
         // TODO: insert DBHandler after Merge
 
-        public Message CreateMessage()
+        public void SendMessage(Message message)
         {
+            // Send vessage via DBHandler
             throw new NotImplementedException();
         }
 
@@ -23,6 +24,8 @@ namespace ChatMail.Models
             List<Message> messages = new List<Message>(1);
             messages.Add(new Message(1, "Test", new DateTime(), new User(1, "Udo", "Biermann", "Beerman"), new List<User>(1)));
             return messages;
+
+            // Get messages via DBHandler
         }
     }
 }

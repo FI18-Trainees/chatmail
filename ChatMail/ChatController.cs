@@ -11,8 +11,6 @@ namespace ChatMail
 	{
 		private string name;
 
-        private ChatView chatGUI;
-
 		private List<User> allUser;
 
 		private DBConnector databaseInstance;
