@@ -48,5 +48,6 @@
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties config_4config-default_1json__JsonSchema="http://json-schema.org/draft-04/schema" config_4config_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
-
+    <Folder Include="Properties\" />
+  </ItemGroup>
 </Project>

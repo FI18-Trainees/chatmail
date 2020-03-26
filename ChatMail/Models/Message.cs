@@ -82,8 +82,4 @@ namespace ChatMail.Models
             return "[" + time + "] (" + this.sender.Displayname + "): " + this.content;
         }
     }
-
-
-
 }
-

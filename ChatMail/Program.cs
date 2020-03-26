@@ -1,3 +1,5 @@
+using ChatMail.Models;
+using ChatMail.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +18,11 @@ namespace ChatMail
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ChatGUI());
+
+            ChatDao dao = new ChatDao();
+            ChatView view = new ChatView(dao);
+
+            Application.Run(view);
         }
     }
 }

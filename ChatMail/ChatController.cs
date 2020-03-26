@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System;
 using ChatMail.Database;
 using ChatMail.Models;
+using System.Windows.Forms;
+using ChatMail.Views;
 
 namespace ChatMail
 {
@@ -9,23 +11,21 @@ namespace ChatMail
 	{
 		private string name;
 
-        private ChatGUI chatGUI;
+        private ChatView chatGUI;
 
 		private List<User> allUser;
 
 		private DBConnector databaseInstance;
-
-		public void sendMessage(Message message)
+    
+		public List<Models.Message> ReceiveMessages(int userId)
 		{
-
+			throw new NotImplementedException();
 		}
 
-		public List<Message> receiveMessages(int userId)
-		{
-			return null;
-		}
-
-	}
-
+        internal void Submit(Models.Message message)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
 
