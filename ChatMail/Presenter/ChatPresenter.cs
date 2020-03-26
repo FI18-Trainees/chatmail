@@ -82,15 +82,14 @@ namespace ChatMail.Presenter
         /// </summary>
         public void SubmitClicked()
         {
-            string messageContent = m_chatView.ReadUserInput();
-            if (messageContent  != string.Empty)
-            {
-                m_dao.SendMessage(messageContent, 0);
-                Update();
-            } else
-            {
-                m_chatView.ShowError("Enter a valid message!");
-            }   
+            UserInput userInput = m_chatView.ReadUserInput();
+            if (userInput.Content == string.Empty)
+                return;
+            if (userInput.SelectedUsername == string.Empty)
+                return;
+            
+            m_dao.SendMessage(userInput);
+            Update();
         }
     }
 }

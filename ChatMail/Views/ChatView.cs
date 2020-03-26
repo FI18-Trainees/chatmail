@@ -16,7 +16,6 @@ namespace ChatMail.Views
     {
         private readonly ChatPresenter m_presenter;
 
-
         /// <summary>
         /// Constructor with initialization
         /// </summary>
@@ -73,10 +72,9 @@ namespace ChatMail.Views
         /// reads the entered text in the input text-box
         /// </summary>
         /// <returns></returns>
-        public string ReadUserInput()
+        public UserInput ReadUserInput()
         {
-            object userID = sendMessageReceiverListBox.SelectedItem;
-            return sendMessageInputTextBox.Text;
+            return new UserInput(sendMessageInputTextBox.Text, sendMessageReceiverListBox.SelectedItem.ToString());
         }
 
         /// <summary>
@@ -87,6 +85,18 @@ namespace ChatMail.Views
         private void SubmitClick(object sender, EventArgs e)
         {
             m_presenter.SubmitClicked();
+        }
+    }
+
+    public class UserInput
+    {
+        public string Content { get; }
+        public string SelectedUsername { get; }
+
+        public UserInput(string content, string selectedUsername)
+        {
+            Content = content;
+            SelectedUsername = selectedUsername;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ChatMail.Database;
 using ChatMail.Interfaces;
+using ChatMail.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,15 +23,17 @@ namespace ChatMail.Models
         /// </summary>
         /// <param name="content">Content of the message</param>
         /// <param name="receieverId">UserID of the receiver</param>
-        public void SendMessage(string content, int receieverId)
+        public void SendMessage(UserInput userInput)
         {
+            List<User> users = GetUsers();
+            int index = users.FindIndex(user => user.Displayname == userInput.SelectedUsername);
             // Send message via DBHandler
-            User messageReceiver = dBHandler.GetUserByUserId(receieverId);
+            User messageReceiver = users[index];
             List<User> receiver = new List<User>
             {
                 messageReceiver
             };
-            Message message = new Message(content, DateTime.Now, currentUser, receiver);
+            Message message = new Message(userInput.Content, DateTime.Now, currentUser, receiver);
             dBHandler.InsertMessage(message);
         }
 
