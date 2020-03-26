@@ -9,7 +9,9 @@ namespace ChatMail.Interfaces
 {
     interface IChatView
     {
-        void ShowMessages(IEnumerable<ChatViewModel> chatViewModelList);
+        void ShowMessages(ChatViewModel chatViewModel);
+
+        void ShowUsers(ChatViewModel m_chatViewModel);
 
         string ReadUserInput();
 

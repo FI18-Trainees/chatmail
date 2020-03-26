@@ -14,7 +14,7 @@ namespace ChatMail.Models
     public class ChatDao : IChatDao
     {
         private User currentUser = new User(0, "Udo", "Biermann", "Beerman");
-        private List<Message> m_allMessages;
+        // private List<Message> m_allMessages;
         private readonly DBHandler dBHandler = new DBHandler();
 
         /// <summary>
@@ -41,8 +41,17 @@ namespace ChatMail.Models
         public List<Message> GetAllMessages()
         {
             // Get messages via DBHandler
-            m_allMessages = dBHandler.GetMessagesByReceiverId(currentUser.UId);
-            return m_allMessages;
+            return dBHandler.GetMessagesByReceiverId(currentUser.UId);
+        }
+
+        /// <summary>
+        /// Fetches all users from dbHandler
+        /// </summary>
+        /// <returns>List of users</returns>
+        public List<User> GetUsers()
+        {
+            // Get users via DBHandler
+            return dBHandler.GetAllUsers();
         }
 
         /// <summary>

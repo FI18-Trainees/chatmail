@@ -17,14 +17,27 @@ namespace ChatMail.Presenter
     {
         private readonly IChatView m_chatView;
         private readonly IChatDao m_dao;
-        private IEnumerable<ChatViewModel> m_chatViewModelList;
+        private ChatViewModel m_chatViewModel;
 
         public ChatPresenter(ChatView chatView, ChatDao dao)
         {
             m_chatView = chatView;
             m_dao = dao;
 
-            Update();
+            Login();
+        }
+
+        private void Login()
+        {
+            List<Message> messageList = m_dao.GetAllMessages();
+            List<User> userList = m_dao.GetUsers();
+
+            ChatViewModel chatViewModel = ResolveViewModelArray(messageList, userList);
+
+            m_chatViewModel = chatViewModel;
+
+            m_chatView.ShowMessages(m_chatViewModel);
+            m_chatView.ShowUsers(m_chatViewModel);
         }
 
         /// <summary>
@@ -36,24 +49,31 @@ namespace ChatMail.Presenter
         {
             List<Message> messageList = m_dao.GetAllMessages();
 
-            IEnumerable<ChatViewModel> chatViewModelList = ResolveViewModelArray(messageList);
+            ChatViewModel chatViewModel = ResolveViewModelArray(messageList, m_chatViewModel.Users);
 
-            m_chatViewModelList = chatViewModelList;
+            m_chatViewModel = chatViewModel;
 
-            m_chatView.ShowMessages(m_chatViewModelList);
+            m_chatView.ShowMessages(m_chatViewModel);
         }
 
         /// <summary>
-        /// >ields viewModel for each message
+        /// returns new viewModel with all messages
         /// </summary>
         /// <param name="messageList"></param>
         /// <returns></returns>
-        private IEnumerable<ChatViewModel> ResolveViewModelArray(IEnumerable<Message> messageList)
+        private ChatViewModel ResolveViewModelArray(List<Message> messageList)
         {
-            foreach (Message message in messageList)
-            {
-                yield return new ChatViewModel(message);
-            }
+            return new ChatViewModel(messageList);
+        }
+
+        /// <summary>
+        /// returns new viewModel with all messages and users
+        /// </summary>
+        /// <param name="messageList"></param>
+        /// <returns></returns>
+        private ChatViewModel ResolveViewModelArray(List<Message> messageList, List<User> userList)
+        {
+            return new ChatViewModel(messageList, userList);
         }
 
         /// <summary>

@@ -5,6 +5,7 @@ using ChatMail.Models;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Message = ChatMail.Models.Message;
 
 namespace ChatMail.Views
 {
@@ -36,16 +37,26 @@ namespace ChatMail.Views
         }
 
         /// <summary>
-        /// Displays given messages in the corresponding TextBox
+        /// Displays given viewModel in the corresponding TextBox
         /// </summary>
         /// <param name="messages"></param>
-        public void ShowMessages(IEnumerable<ChatViewModel> messages)
+        public void ShowMessages(ChatViewModel viewModel)
         {
             receivedMessagesTextBox.Clear();
 
-            foreach (ChatViewModel viewModel in messages)
+            foreach (Message message in viewModel.Messages)
             {
-                receivedMessagesTextBox.Text += viewModel.Content + Environment.NewLine;
+                receivedMessagesTextBox.Text += message.Content + Environment.NewLine;
+            }
+        }
+
+        public void ShowUsers(ChatViewModel viewModel)
+        {
+            sendMessageReceiverListBox.Items.Clear();
+
+            foreach (User user in viewModel.Users)
+            {
+                sendMessageReceiverListBox.Items.Add(user.Displayname);
             }
         }
 
@@ -64,6 +75,7 @@ namespace ChatMail.Views
         /// <returns></returns>
         public string ReadUserInput()
         {
+            object userID = sendMessageReceiverListBox.SelectedItem;
             return sendMessageInputTextBox.Text;
         }
 

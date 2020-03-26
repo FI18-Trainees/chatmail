@@ -8,5 +8,6 @@ namespace ChatMail.Interfaces
         void SendMessage(string message, int receivcerId);
 
         List<Message> GetAllMessages();
+        List<User> GetUsers();
     }
 }
