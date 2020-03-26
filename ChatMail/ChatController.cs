@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System;
-using DBConnectorTest;
+using ChatMail.Database;
 using ChatMail.Models;
 using System.Windows.Forms;
 using ChatMail.Views;
@@ -16,7 +16,7 @@ namespace ChatMail
 		private List<User> allUser;
 
 		private DBConnector databaseInstance;
-
+    
 		public List<Models.Message> ReceiveMessages(int userId)
 		{
 			throw new NotImplementedException();
