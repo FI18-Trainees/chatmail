@@ -8,13 +8,20 @@ using System.Threading.Tasks;
 
 namespace ChatMail.Models
 {
+    /// <summary>
+    /// Chat Data Access Object - Handles all data flow from and to the viewPresenter and viewModel
+    /// </summary>
     public class ChatDao : IChatDao
     {
         private User currentUser = new User(0, "Udo", "Biermann", "Beerman");
-        private readonly List<Message> m_allMessages;
+        private List<Message> m_allMessages;
         private readonly DBHandler dBHandler = new DBHandler();
-        // TODO: insert DBHandler after Merge
 
+        /// <summary>
+        /// Constructs a message and sends it to the dbHandler
+        /// </summary>
+        /// <param name="content">Content of the message</param>
+        /// <param name="receieverId">UserID of the receiver</param>
         public void SendMessage(string content, int receieverId)
         {
             // Send message via DBHandler
@@ -27,17 +34,21 @@ namespace ChatMail.Models
             dBHandler.InsertMessage(message);
         }
 
+        /// <summary>
+        /// Fetches reveived messages for current user from dbHandler
+        /// </summary>
+        /// <returns>List of received messages</returns>
         public List<Message> GetAllMessages()
         {
-            List<Message> messages = new List<Message>
-            {
-                new Message(1, "Test", new DateTime(), new User(1, "Udo", "Biermann", "Beerman"), new List<User>())
-            };
-            return messages;
-
             // Get messages via DBHandler
+            m_allMessages = dBHandler.GetMessagesByReceiverId(currentUser.UId);
+            return m_allMessages;
         }
 
+        /// <summary>
+        /// log in the user and retreives user info corresponding to its ID
+        /// </summary>
+        /// <param name="uId"></param>
         public void Login(int uId)
         {
             currentUser = new User(uId, "Udo", "Biermann", "Beerman");

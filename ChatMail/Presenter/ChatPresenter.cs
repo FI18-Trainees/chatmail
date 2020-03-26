@@ -10,6 +10,9 @@ using ChatMail.ViewModels;
 
 namespace ChatMail.Presenter
 {
+    /// <summary>
+    /// Presenter class which presents 
+    /// </summary>
     class ChatPresenter
     {
         private readonly IChatView m_chatView;
@@ -24,6 +27,11 @@ namespace ChatMail.Presenter
             Update();
         }
 
+        /// <summary>
+        /// Fetches new Messages from DAO
+        /// Provides list of viewModels with messages
+        /// Calls ShowMessages on view
+        /// </summary>
         private void Update()
         {
             List<Message> messageList = m_dao.GetAllMessages();
@@ -35,6 +43,11 @@ namespace ChatMail.Presenter
             m_chatView.ShowMessages(m_chatViewModelList);
         }
 
+        /// <summary>
+        /// >ields viewModel for each message
+        /// </summary>
+        /// <param name="messageList"></param>
+        /// <returns></returns>
         private IEnumerable<ChatViewModel> ResolveViewModelArray(IEnumerable<Message> messageList)
         {
             foreach (Message message in messageList)
@@ -43,6 +56,10 @@ namespace ChatMail.Presenter
             }
         }
 
+        /// <summary>
+        /// Checks for valid input
+        /// Retreives information for new messages and passes to DAO
+        /// </summary>
         public void SubmitClicked()
         {
             string messageContent = m_chatView.ReadUserInput();
@@ -53,9 +70,7 @@ namespace ChatMail.Presenter
             } else
             {
                 m_chatView.ShowError("Enter a valid message!");
-            }
-            
-            
+            }   
         }
     }
 }

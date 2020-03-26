@@ -102,10 +102,10 @@
             // 
             // receivedMessagesTextBox
             // 
-            this.receivedMessagesTextBox.Enabled = false;
             this.receivedMessagesTextBox.Location = new System.Drawing.Point(6, 19);
             this.receivedMessagesTextBox.Multiline = true;
             this.receivedMessagesTextBox.Name = "receivedMessagesTextBox";
+            this.receivedMessagesTextBox.ReadOnly = true;
             this.receivedMessagesTextBox.Size = new System.Drawing.Size(1228, 308);
             this.receivedMessagesTextBox.TabIndex = 0;
             // 
