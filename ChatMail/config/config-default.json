@@ -2,6 +2,6 @@
   "server": "localhost",
   "port": "3306",
   "database": "chatmail",
-  "user": "root",
-  "password": "root"
+  "user": "default",
+  "password": "default"
 }

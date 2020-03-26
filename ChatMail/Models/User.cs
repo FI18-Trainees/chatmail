@@ -61,10 +61,21 @@ namespace ChatMail.Models
         /// <summary>
         /// Getters for properties
         /// </summary>
-        public int UId => uId;
-        public string Firstname => firstname;
-        public string Lastname => lastname;
-        public string Displayname => displayname;
+        public int UId {
+            get { return uId; }
+        }
+        public string Firstname
+        {
+            get { return firstname; }
+        }
+        public string Lastname
+        {
+            get { return lastname; }
+        }
+        public string Displayname
+        {
+            get { return displayname; }
+        }
     }
 }
 

@@ -11,7 +11,7 @@ namespace ChatMail.Interfaces
     {
         void ShowMessages(IEnumerable<ChatViewModel> chatViewModelList);
 
-        void ReadUserInput();
+        string ReadUserInput();
 
         void ShowError(string message);
     }

@@ -10,11 +10,13 @@ namespace ChatMail.Views
 {
     public partial class ChatView : Form, IChatView
     {
-        private ChatPresenter m_presenter;
+        private readonly ChatPresenter m_presenter;
 
         public ChatView()
         {
             InitializeComponent();
+
+            sendMessageSubmitButton.Click += new EventHandler(SubmitClick);
         }
 
         public ChatView(ChatDao dao) : this()
@@ -35,12 +37,12 @@ namespace ChatMail.Views
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        public void ReadUserInput()
+        public string ReadUserInput()
         {
-            
+            return sendMessageInputTextBox.Text;
         }
 
-        private void m_submit_Click(object sender, EventArgs e)
+        private void SubmitClick(object sender, EventArgs e)
         {
             m_presenter.SubmitClicked();
         }

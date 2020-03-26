@@ -14,7 +14,7 @@ namespace ChatMail.Database
 {
     class DBHandler
     {
-        private DBConnector databaseInstance;
+        private readonly DBConnector databaseInstance;
         
         /// <summary>
         /// Constructor of DBHandler
@@ -45,7 +45,7 @@ namespace ChatMail.Database
         /// Gets list of all registered users
         /// </summary>
         /// <returns>List of user objects</returns>
-        public List<User> getAllUsers()
+        public List<User> GetAllUsers()
         {
             string sql = File.ReadAllText(@"SQL\selectAllUsers.sql");
 
@@ -64,7 +64,7 @@ namespace ChatMail.Database
         /// </summary>
         /// <param name="uId">User id to search for</param>
         /// <returns>User object, null if not found</returns>
-        public User getUserByUserId(int uId)
+        public User GetUserByUserId(int uId)
         {
             string sql = File.ReadAllText(@"SQL\selectUserByUId.sql");
 
@@ -84,7 +84,7 @@ namespace ChatMail.Database
         /// Gets a list of all sent messages
         /// </summary>
         /// <returns>List of all message objects</returns>
-        public List<Message> getAllMessages()
+        public List<Message> GetAllMessages()
         {
             string sql = File.ReadAllText(@"SQL\selectAllMessages.sql");
 
@@ -95,8 +95,8 @@ namespace ChatMail.Database
             {
                 int mId = int.Parse(row["mId"].ToString());
                 int senderId = int.Parse(row["senderId"].ToString());
-                User sender = this.getUserByUserId(senderId);
-                List<User> receiverList = this.getReceiversByMessageId(mId);
+                User sender = this.GetUserByUserId(senderId);
+                List<User> receiverList = this.GetReceiversByMessageId(mId);
                 output.Add(new Message(row, sender, receiverList));
             }
 
@@ -107,7 +107,7 @@ namespace ChatMail.Database
         /// </summary>
         /// <param name="rId">ID of user that received messages</param>
         /// <returns>List of message objects sent to the user</returns>
-        public List<Message> getMessagesByReceiverId(int rId)
+        public List<Message> GetMessagesByReceiverId(int rId)
         {
             string sql = File.ReadAllText(@"SQL\selectMessageByRId.sql");
 
@@ -122,8 +122,8 @@ namespace ChatMail.Database
             {
                 int mId = int.Parse(row["mId"].ToString());
                 int senderId = int.Parse(row["senderId"].ToString());
-                User sender = this.getUserByUserId(senderId);
-                List<User> receiverList = this.getReceiversByMessageId(mId);
+                User sender = this.GetUserByUserId(senderId);
+                List<User> receiverList = this.GetReceiversByMessageId(mId);
                 output.Add(new Message(row, sender, receiverList));
             }
 
@@ -134,7 +134,7 @@ namespace ChatMail.Database
         /// </summary>
         /// <param name="mId">message id to search for</param>
         /// <returns>Message object, null if not found</returns>
-        public Message getMessageByMessageId(int mId)
+        public Message GetMessageByMessageId(int mId)
         {
             string sql = File.ReadAllText(@"SQL\selectMessageByMessageId.sql");
 
@@ -147,8 +147,8 @@ namespace ChatMail.Database
             foreach (DataRow row in dt.Rows)
             {
                 int senderId = int.Parse(row["senderId"].ToString());
-                User sender = this.getUserByUserId(senderId);
-                List<User> receiverList = this.getReceiversByMessageId(mId);
+                User sender = this.GetUserByUserId(senderId);
+                List<User> receiverList = this.GetReceiversByMessageId(mId);
                 return new Message(row, sender, receiverList);
             }
 
@@ -159,7 +159,7 @@ namespace ChatMail.Database
         /// </summary>
         /// <param name="mId">Message ID to scan</param>
         /// <returns>List of all receivers of this message</returns>
-        public List<User> getReceiversByMessageId(int mId)
+        public List<User> GetReceiversByMessageId(int mId)
         {
             string sql = File.ReadAllText(@"SQL\selectReceiverByMId.sql");
 
@@ -183,9 +183,9 @@ namespace ChatMail.Database
         /// <param name="mId"></param>
         /// <param name="rId"></param>
         /// <returns></returns>
-        private bool insertMessageReceiver(int mId, int rId)
+        private bool InsertMessageReceiver(int mId, int rId)
         {
-            string sql = File.ReadAllText(@"SQL\insertMessageReceiver.sql");
+            string sql = File.ReadAllText(@"SQL\InsertMessageReceiver.sql");
 
             MySqlCommand command = new MySqlCommand(sql);
             command.Parameters.Add("@MID", MySqlDbType.Int32);
@@ -201,9 +201,9 @@ namespace ChatMail.Database
         /// </summary>
         /// <param name="message">Message object to insert</param>
         /// <returns>info about success</returns>
-        public bool insertMessage(Message message)
+        public bool InsertMessage(Message message)
         {
-            string sql = File.ReadAllText(@"SQL\insertMessage.sql");
+            string sql = File.ReadAllText(@"SQL\InsertMessage.sql");
 
             MySqlCommand command = new MySqlCommand(sql);
             command.Parameters.Add("@CONTENT", MySqlDbType.String);
@@ -232,7 +232,7 @@ namespace ChatMail.Database
             // insert receiver details
             foreach (User user in message.Receiver)
             {
-                bool suc = this.insertMessageReceiver(mId, user.UId);
+                bool suc = this.InsertMessageReceiver(mId, user.UId);
                 if (!suc)
                 {
                     success = false;
@@ -246,7 +246,7 @@ namespace ChatMail.Database
         /// </summary>
         /// <param name="user">User object ot insert</param>
         /// <returns>Info about success</returns>
-        public bool insertUser(User user)
+        public bool InsertUser(User user)
         {
             string sql = File.ReadAllText(@"SQL\insertUser.sql");
 

@@ -45,9 +45,17 @@ namespace ChatMail.Presenter
 
         public void SubmitClicked()
         {
+            string messageContent = m_chatView.ReadUserInput();
+            if (messageContent  != string.Empty)
+            {
+                m_dao.SendMessage(messageContent, 0);
+                Update();
+            } else
+            {
+                m_chatView.ShowError("Enter a valid message!");
+            }
             
-            m_dao.SendMessage(null);
-            Update();
+            
         }
     }
 }

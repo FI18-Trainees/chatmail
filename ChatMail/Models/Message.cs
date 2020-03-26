@@ -6,15 +6,15 @@ namespace ChatMail.Models
 {
 	public class Message
 	{
-		private readonly int mId;
 
-		private readonly string content;
-
-		private readonly DateTime timestamp;
-
-		private readonly User sender;
-
-		private readonly List<User> receiver;
+        /// <summary>
+        /// Properties
+        /// </summary>
+        public int MId { get; }
+        public string Content { get; }
+        public DateTime Timestamp { get; }
+        public User Sender { get; }
+        public List<User> Receiver { get; }
 
         /// <summary>
         /// Constructor for Message
@@ -26,11 +26,11 @@ namespace ChatMail.Models
         /// <param name="receiver">List of user object that receive the message</param>
         public Message(int mId, string content, DateTime timestamp, User sender, List<User> receiver)
         {
-            this.mId = mId;
-            this.content = content;
-            this.timestamp = timestamp;
-            this.sender = sender;
-            this.receiver = receiver;
+            this.MId = mId;
+            this.Content = content;
+            this.Timestamp = timestamp;
+            this.Sender = sender;
+            this.Receiver = receiver;
         }
 
         /// <summary>
@@ -42,10 +42,10 @@ namespace ChatMail.Models
         /// <param name="receiver">List of user object that receive the message</param>
         public Message(string content, DateTime timestamp, User sender, List<User> receiver)
         {
-            this.content = content;
-            this.timestamp = timestamp;
-            this.sender = sender;
-            this.receiver = receiver;
+            this.Content = content;
+            this.Timestamp = timestamp;
+            this.Sender = sender;
+            this.Receiver = receiver;
         }
 
         /// <summary>
@@ -56,30 +56,21 @@ namespace ChatMail.Models
         /// <param name="receiver">List of user object that receive the message</param>
         public Message(DataRow row, User sender, List<User> receiver)
         {
-            this.mId = int.Parse(row["mId"].ToString());
-            this.content = row["content"].ToString();
-            this.timestamp = DateTime.Parse(row["timestamp"].ToString());
-            this.sender = sender;
-            this.receiver = receiver;
+            this.MId = int.Parse(row["mId"].ToString());
+            this.Content = row["content"].ToString();
+            this.Timestamp = DateTime.Parse(row["timestamp"].ToString());
+            this.Sender = sender;
+            this.Receiver = receiver;
         }
-
-        /// <summary>
-        /// Getters for properties
-        /// </summary>
-        public int MId => mId;
-        public string Content => content;
-        public DateTime Timestamp => timestamp;
-        public User Sender => sender;
-        public List<User> Receiver => receiver;
 
         /// <summary>
         /// Generates string of message.
         /// </summary>
         /// <returns>String of message.</returns>
-        public string display()
+        public string Display()
         {
-            string time = this.timestamp.ToString("yyyy.MM.dd HH:mm:ss");
-            return "[" + time + "] (" + this.sender.Displayname + "): " + this.content;
+            string time = this.Timestamp.ToString("yyyy.MM.dd HH:mm:ss");
+            return "[" + time + "] (" + this.Sender.Displayname + "): " + this.Content;
         }
     }
 }

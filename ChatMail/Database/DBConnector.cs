@@ -12,7 +12,7 @@ namespace ChatMail.Database
 {
     class DBConnector
     {
-        MySqlConnection connection = new MySqlConnection();
+        readonly MySqlConnection connection = new MySqlConnection();
 
         /// <summary>
         /// Constructor of DBConnector
@@ -74,15 +74,17 @@ namespace ChatMail.Database
         {
             this.Open();
 
-            MySqlCommand command = new MySqlCommand();
-            command.CommandText = sql;
-            command.Connection = this.connection;
-            DataTable result = new DataTable();
-            result.Load(command.ExecuteReader());
-            
-            this.Close();
+            using (MySqlCommand command = new MySqlCommand())
+            {
+                command.CommandText = sql;
+                command.Connection = this.connection;
+                DataTable result = new DataTable();
+                result.Load(command.ExecuteReader());
 
-            return result;
+                this.Close();
+
+                return result;
+            }
         }
         /// <summary>
         /// Executes sql command

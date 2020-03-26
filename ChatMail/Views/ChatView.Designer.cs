@@ -102,6 +102,7 @@
             // 
             // receivedMessagesTextBox
             // 
+            this.receivedMessagesTextBox.Enabled = false;
             this.receivedMessagesTextBox.Location = new System.Drawing.Point(6, 19);
             this.receivedMessagesTextBox.Multiline = true;
             this.receivedMessagesTextBox.Name = "receivedMessagesTextBox";
