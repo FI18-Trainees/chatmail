@@ -23,7 +23,7 @@ namespace ChatMail.Models
             {
                 messageReceiver
             };
-            Message message = new Message(content, new DateTime(), currentUser, receiver);
+            Message message = new Message(content, DateTime.Now, currentUser, receiver);
             dBHandler.InsertMessage(message);
         }
 
