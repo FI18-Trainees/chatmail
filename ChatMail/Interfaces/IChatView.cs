@@ -1,4 +1,5 @@
 ﻿using ChatMail.ViewModels;
+using ChatMail.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,11 @@ namespace ChatMail.Interfaces
 {
     interface IChatView
     {
-        void ShowMessages(IEnumerable<ChatViewModel> chatViewModelList);
+        void ShowMessages(ChatViewModel chatViewModel);
 
-        string ReadUserInput();
+        void ShowUsers(ChatViewModel m_chatViewModel);
+
+        UserInput ReadUserInput();
 
         void ShowError(string message);
     }

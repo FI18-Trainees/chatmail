@@ -10,41 +10,19 @@ namespace ChatMail.ViewModels
 {
     public class ChatViewModel
     {
-        private readonly Message m_message;
+        public List<Message> Messages { get; }
 
-        public ChatViewModel(Message message)
+        public List<User> Users { get; }
+
+        public ChatViewModel(List<Message> messages)
         {
-            m_message = message;
+            Messages = messages;
         }
 
-        public int MId
+        public ChatViewModel(List<Message> messages, List<User> users)
         {
-            get { return m_message.MId; }
-        }
-
-        public string Content
-        {
-            get { return m_message.Content; }
-        }
-
-        public DateTime Timestamp
-        {
-            get { return m_message.Timestamp; }
-        }
-
-        public User Sender
-        {
-            get { return m_message.Sender; }
-        }
-
-        public List<User> Receiver
-        {
-            get { return m_message.Receiver; }
-        }
-
-        public Message Message
-        {
-            get { return m_message; }
+            Messages = messages;
+            Users = users;
         }
     }
 }
