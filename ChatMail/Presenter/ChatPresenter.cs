@@ -81,7 +81,7 @@ namespace ChatMail.Presenter
             UserInput userInput = m_chatView.ReadUserInput();
             if (userInput.Content == string.Empty)
                 return;
-            if (userInput.SelectedUsername == string.Empty)
+            if (userInput.SelectedUsername.Count() == 0)
                 return;
             
             m_dao.SendMessage(userInput);

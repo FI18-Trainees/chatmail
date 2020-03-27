@@ -84,6 +84,7 @@
             this.sendMessageReceiverListBox.FormattingEnabled = true;
             this.sendMessageReceiverListBox.Location = new System.Drawing.Point(83, 34);
             this.sendMessageReceiverListBox.Name = "sendMessageReceiverListBox";
+            this.sendMessageReceiverListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.sendMessageReceiverListBox.Size = new System.Drawing.Size(277, 43);
             this.sendMessageReceiverListBox.TabIndex = 0;
             // 

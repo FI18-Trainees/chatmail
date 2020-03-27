@@ -95,7 +95,13 @@ namespace ChatMail.Views
         /// <returns></returns>
         public UserInput ReadUserInput()
         {
-            return new UserInput(sendMessageInputTextBox.Text, sendMessageReceiverListBox.SelectedItem.ToString());
+            List<string> selectedUsers = new List<string>();
+            foreach(string username in sendMessageReceiverListBox.SelectedItems)
+            {
+                selectedUsers.Add(username);
+            }
+
+            return new UserInput(sendMessageInputTextBox.Text, selectedUsers);
         }
 
         /// <summary>
@@ -146,7 +152,7 @@ namespace ChatMail.Views
     public class UserInput
     {
         public string Content { get; }
-        public string SelectedUsername { get; }
+        public List<string> SelectedUsername { get; }
 
 
         /// <summary>
@@ -154,7 +160,7 @@ namespace ChatMail.Views
         /// </summary>
         /// <param name="content">content of textbox</param>
         /// <param name="selectedUsername">selected receiver</param>
-        public UserInput(string content, string selectedUsername)
+        public UserInput(string content, List<string> selectedUsername)
         {
             Content = content;
             SelectedUsername = selectedUsername;
