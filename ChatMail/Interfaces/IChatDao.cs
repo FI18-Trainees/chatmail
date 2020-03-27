@@ -7,7 +7,7 @@ namespace ChatMail.Interfaces
     public interface IChatDao
     {
         void SendMessage(UserInput userInput);
-
+        string Login();
         List<Message> GetAllMessages();
         List<User> GetUsers();
     }

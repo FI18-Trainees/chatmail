@@ -3,6 +3,7 @@ using ChatMail.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -10,6 +11,7 @@ namespace ChatMail
 {
     static class Program
     {
+        public static string currentUser;
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -19,10 +21,26 @@ namespace ChatMail
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            ChatDao dao = new ChatDao();
-            ChatView view = new ChatView(dao);
+            LoginDao loginDao = new LoginDao();
+            LoginView loginView = new LoginView(loginDao);
 
-            Application.Run(view);
+            Application.Run(loginView);
+        }
+
+        public static void Chat(string selectedUser)
+        {
+            currentUser = selectedUser;
+
+            ChatDao chatDao = new ChatDao();
+            ChatView chatView = new ChatView(chatDao);
+
+            Thread chatThread = new Thread(new ParameterizedThreadStart(ChatView));
+            chatThread.Start(chatView);
+        }
+
+        private static void ChatView(object obj)
+        {
+            Application.Run((ChatView) obj);
         }
     }
 }
