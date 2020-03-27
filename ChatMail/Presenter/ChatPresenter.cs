@@ -87,5 +87,10 @@ namespace ChatMail.Presenter
             m_dao.SendMessage(userInput);
             Update();
         }
+
+        public void TimerTick()
+        {
+            Update();      
+        }
     }
 }
