@@ -68,6 +68,11 @@ namespace ChatMail.Views
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        public void ShowUsername(string username)
+        {
+            this.Text = "ChatMail: " + username;
+        }
+
         /// <summary>
         /// reads the entered text in the input text-box
         /// </summary>
@@ -84,7 +89,13 @@ namespace ChatMail.Views
         /// <param name="e">Arguments of the event</param>
         private void SubmitClick(object sender, EventArgs e)
         {
+            if (sendMessageReceiverListBox.SelectedIndex == -1)
+            {
+                ShowError("Please select a receiver!");
+                return;
+            }
             m_presenter.SubmitClicked();
+
         }
     }
 

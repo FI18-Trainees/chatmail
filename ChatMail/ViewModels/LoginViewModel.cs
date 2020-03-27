@@ -1,23 +1,19 @@
 ﻿using ChatMail.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ChatMail.ViewModels
 {
-    public class ChatViewModel
+    public class LoginViewModel
     {
-        public List<Message> Messages { get; }
-
         public List<User> Users { get; }
 
-        public ChatViewModel(List<Message> messages, List<User> users)
+        public LoginViewModel (List<User> users)
         {
-            Messages = messages;
-            Users = users;
+            this.Users = users;
         }
     }
 }

@@ -58,13 +58,17 @@ namespace ChatMail.Models
         }
 
         /// <summary>
-        /// log in the user and retreives user info corresponding to its ID
+        /// retreives current user data
         /// </summary>
-        /// <param name="uId"></param>
-        public void Login(int uId)
+        /// <returns>display name of current user</returns>
+        public string Login()
         {
-            currentUser = new User(uId, "Udo", "Biermann", "Beerman");
             // retreive user data via DBHandler
+            string currentUserName = Program.currentUser;
+            List<User> users = GetUsers();
+            int index = users.FindIndex(user => user.Displayname == currentUserName);
+            currentUser = users[index];
+            return currentUserName;
         }
     }
 }

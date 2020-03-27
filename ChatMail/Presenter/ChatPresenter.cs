@@ -18,6 +18,7 @@ namespace ChatMail.Presenter
         private readonly IChatView m_chatView;
         private readonly IChatDao m_dao;
         private ChatViewModel m_chatViewModel;
+        private string m_currentUserDisplayname;
 
         public ChatPresenter(ChatView chatView, ChatDao dao)
         {
@@ -25,14 +26,16 @@ namespace ChatMail.Presenter
             m_dao = dao;
 
             Login();
+            m_chatView.ShowUsername(m_currentUserDisplayname);
         }
 
         private void Login()
         {
+            m_currentUserDisplayname = m_dao.Login();
             List<Message> messageList = m_dao.GetAllMessages();
             List<User> userList = m_dao.GetUsers();
 
-            ChatViewModel chatViewModel = ResolveViewModelArray(messageList, userList);
+            ChatViewModel chatViewModel = ResolveViewModel(messageList, userList);
 
             m_chatViewModel = chatViewModel;
 
@@ -49,7 +52,7 @@ namespace ChatMail.Presenter
         {
             List<Message> messageList = m_dao.GetAllMessages();
 
-            ChatViewModel chatViewModel = ResolveViewModelArray(messageList, m_chatViewModel.Users);
+            ChatViewModel chatViewModel = ResolveViewModel(messageList, m_chatViewModel.Users);
 
             m_chatViewModel = chatViewModel;
 
@@ -57,21 +60,11 @@ namespace ChatMail.Presenter
         }
 
         /// <summary>
-        /// returns new viewModel with all messages
-        /// </summary>
-        /// <param name="messageList"></param>
-        /// <returns></returns>
-        private ChatViewModel ResolveViewModelArray(List<Message> messageList)
-        {
-            return new ChatViewModel(messageList);
-        }
-
-        /// <summary>
         /// returns new viewModel with all messages and users
         /// </summary>
         /// <param name="messageList"></param>
         /// <returns></returns>
-        private ChatViewModel ResolveViewModelArray(List<Message> messageList, List<User> userList)
+        private ChatViewModel ResolveViewModel(List<Message> messageList, List<User> userList)
         {
             return new ChatViewModel(messageList, userList);
         }

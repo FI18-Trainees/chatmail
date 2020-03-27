@@ -17,5 +17,6 @@ namespace ChatMail.Interfaces
         UserInput ReadUserInput();
 
         void ShowError(string message);
+        void ShowUsername(string m_currentUserDisplayname);
     }
 }
