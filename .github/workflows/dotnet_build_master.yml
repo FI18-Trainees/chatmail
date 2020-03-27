@@ -18,5 +18,6 @@ jobs:
 
       - name: Dotnet Build
         run: |
+          cd ChatMail
           dotnet clean
           dotnet build -c Release

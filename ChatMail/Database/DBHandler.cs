@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 
 namespace ChatMail.Database
 {
-    class DBHandler
+    public class DBHandler
     {
         private readonly DBConnector databaseInstance;
         
@@ -193,7 +193,15 @@ namespace ChatMail.Database
             command.Parameters.Add("@RID", MySqlDbType.Int32);
             command.Parameters["@RID"].Value = rId;
 
-            int result = this.databaseInstance.ExecuteNonQuery(command);
+            int result = 0;
+            try
+            {
+                result = this.databaseInstance.ExecuteNonQuery(command);
+            }
+            catch (MySqlException ex)
+            {
+                return false;
+            }
             return result != 0;
         }
         /// <summary>
@@ -214,8 +222,14 @@ namespace ChatMail.Database
             command.Parameters["@SENDERID"].Value = message.Sender.UId;
 
             bool success = true;
-
-            DataTable dt = this.databaseInstance.Execute(command);
+            DataTable dt;
+            try
+            {
+                dt = this.databaseInstance.Execute(command);
+            } catch(MySqlException ex)
+            {
+                return false;
+            }
             
             // get id of inserted message
             int mId = -1;
@@ -258,7 +272,14 @@ namespace ChatMail.Database
             command.Parameters.Add("@DISPLAYNAME", MySqlDbType.String);
             command.Parameters["@DISPLAYNAME"].Value = user.Displayname;
 
-            int result = this.databaseInstance.ExecuteNonQuery(command);
+            int result = 0;
+            try
+            {
+                result = this.databaseInstance.ExecuteNonQuery(command);
+            } catch(MySqlException ex)
+            {
+                return false;
+            }
             return result != 0;
         }
     }

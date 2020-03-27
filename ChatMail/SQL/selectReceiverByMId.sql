@@ -1,1 +1,1 @@
-SELECT uId, firstname, lastname, displayname FROM chatmail.user INNER JOIN chatmail.messagereceiver ON user.uId = messagereceiver.rId 
+SELECT uId, firstname, lastname, displayname FROM chatmail.user INNER JOIN chatmail.messagereceiver ON user.uId = messagereceiver.rId WHERE messagereceiver.mId = @MID;

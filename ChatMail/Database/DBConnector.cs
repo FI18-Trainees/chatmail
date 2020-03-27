@@ -10,7 +10,7 @@ using ChatMail.Models;
 
 namespace ChatMail.Database
 {
-    class DBConnector
+    public class DBConnector
     {
         readonly MySqlConnection connection = new MySqlConnection();
 

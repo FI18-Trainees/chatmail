@@ -107,7 +107,7 @@ ALTER TABLE `messagereceiver`
 -- AUTO_INCREMENT für Tabelle `user`
 --
 ALTER TABLE `user`
-  MODIFY `uId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT;
+  MODIFY `uId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints der exportierten Tabellen
