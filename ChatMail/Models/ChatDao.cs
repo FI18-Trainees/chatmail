@@ -25,14 +25,16 @@ namespace ChatMail.Models
         /// <param name="receieverId">UserID of the receiver</param>
         public void SendMessage(UserInput userInput)
         {
+            
             List<User> users = GetUsers();
-            int index = users.FindIndex(user => user.Displayname == userInput.SelectedUsername);
+            //int index = users.FindIndex(user => user.Displayname == userInput.SelectedUsername);
             // Send message via DBHandler
-            User messageReceiver = users[index];
+            // User messageReceiver = users[index];
             List<User> receiver = new List<User>
             {
-                messageReceiver
+                //messageReceiver
             };
+            userInput.SelectedUsername.ForEach(username => receiver.Add(users[users.FindIndex(user => user.Displayname == username)]));
             Message message = new Message(userInput.Content, DateTime.Now, currentUser, receiver);
             dBHandler.InsertMessage(message);
         }
