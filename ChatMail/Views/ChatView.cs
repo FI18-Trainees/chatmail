@@ -49,6 +49,10 @@ namespace ChatMail.Views
             }
         }
 
+        /// <summary>
+        /// Adds users to listbox
+        /// </summary>
+        /// <param name="viewModel">viewModel with the users</param>
         public void ShowUsers(ChatViewModel viewModel)
         {
             sendMessageReceiverListBox.Items.Clear();
@@ -99,11 +103,20 @@ namespace ChatMail.Views
         }
     }
 
+    /// <summary>
+    /// Class which represents the user input
+    /// </summary>
     public class UserInput
     {
         public string Content { get; }
         public string SelectedUsername { get; }
 
+
+        /// <summary>
+        /// Constructor for the user input
+        /// </summary>
+        /// <param name="content">content of textbox</param>
+        /// <param name="selectedUsername">selected receiver</param>
         public UserInput(string content, string selectedUsername)
         {
             Content = content;

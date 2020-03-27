@@ -15,6 +15,11 @@ namespace ChatMail.Presenter
         private readonly ILoginView m_loginView;
         private readonly ILoginDao m_loginDao;
 
+        /// <summary>
+        /// Constructor of the presenter
+        /// </summary>
+        /// <param name="loginView">View of the presenter</param>
+        /// <param name="loginDao">Data Access Object of the presenter</param>
         public LoginPresenter(LoginView loginView, LoginDao loginDao)
         {
             m_loginView = loginView;
@@ -23,6 +28,9 @@ namespace ChatMail.Presenter
             Login();
         }
 
+        /// <summary>
+        /// Gets all users from dao and creates viewModel which is passed to the view
+        /// </summary>
         private void Login()
         {
             List<User> users = m_loginDao.GetUsers();
@@ -32,11 +40,20 @@ namespace ChatMail.Presenter
             m_loginView.ShowUsers(loginViewModel);
         }
 
+        /// <summary>
+        /// Returns viewModel instance with users inside
+        /// </summary>
+        /// <param name="users">list of all users</param>
+        /// <returns>viewModel with users inside</returns>
         private LoginViewModel ResolveViewModel(List<User> users)
         {
             return new LoginViewModel(users);
         }
 
+        /// <summary>
+        /// Gets user input and passes it to dao
+        /// Closes the view after transmission
+        /// </summary>
         public void Login_Clicked()
         {
             string input = m_loginView.ReadUserInput();
@@ -44,11 +61,17 @@ namespace ChatMail.Presenter
             Close();
         }
 
+        /// <summary>
+        /// Gets called when form is closed
+        /// </summary>
         public void Close_Clicked()
         {
             Close();
         }
 
+        /// <summary>
+        /// Closes the view
+        /// </summary>
         private void Close()
         {
             m_loginView.CloseView();

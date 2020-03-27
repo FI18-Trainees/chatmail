@@ -29,6 +29,9 @@ namespace ChatMail.Presenter
             m_chatView.ShowUsername(m_currentUserDisplayname);
         }
 
+        /// <summary>
+        /// Handles initialization of the view and viewModel
+        /// </summary>
         private void Login()
         {
             m_currentUserDisplayname = m_dao.Login();

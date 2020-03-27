@@ -9,8 +9,15 @@ namespace ChatMail.ViewModels
 {
     public class LoginViewModel
     {
+        /// <summary>
+        /// List of all users
+        /// </summary>
         public List<User> Users { get; }
 
+        /// <summary>
+        /// Constructor of the viewModel
+        /// </summary>
+        /// <param name="users">List of all users</param>
         public LoginViewModel (List<User> users)
         {
             this.Users = users;
