@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.sendMessageGroupBox = new System.Windows.Forms.GroupBox();
             this.sendMessageInputTextBox = new System.Windows.Forms.TextBox();
             this.sendMessageSubmitButton = new System.Windows.Forms.Button();
@@ -36,10 +35,8 @@
             this.sendMessageReceiverListBox = new System.Windows.Forms.ListBox();
             this.receivedMessageGroupBox = new System.Windows.Forms.GroupBox();
             this.receivedMessagesTextBox = new System.Windows.Forms.TextBox();
-            this.chatViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sendMessageGroupBox.SuspendLayout();
             this.receivedMessageGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chatViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // sendMessageGroupBox
@@ -109,10 +106,6 @@
             this.receivedMessagesTextBox.Size = new System.Drawing.Size(1228, 308);
             this.receivedMessagesTextBox.TabIndex = 0;
             // 
-            // chatViewModelBindingSource
-            // 
-            this.chatViewModelBindingSource.AllowNew = false;
-            // 
             // ChatView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -122,11 +115,11 @@
             this.Controls.Add(this.sendMessageGroupBox);
             this.Name = "ChatView";
             this.Text = "ChatMail";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChatView_FormClosing);
             this.sendMessageGroupBox.ResumeLayout(false);
             this.sendMessageGroupBox.PerformLayout();
             this.receivedMessageGroupBox.ResumeLayout(false);
             this.receivedMessageGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chatViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -140,7 +133,6 @@
         private System.Windows.Forms.ListBox sendMessageReceiverListBox;
         private System.Windows.Forms.GroupBox receivedMessageGroupBox;
         private System.Windows.Forms.TextBox receivedMessagesTextBox;
-        private System.Windows.Forms.BindingSource chatViewModelBindingSource;
     }
 }
 

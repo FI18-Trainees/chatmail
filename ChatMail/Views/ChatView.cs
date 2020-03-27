@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Message = ChatMail.Models.Message;
+using System.Threading;
+using System.Timers;
 
 namespace ChatMail.Views
 {
@@ -16,6 +18,11 @@ namespace ChatMail.Views
     {
         private readonly ChatPresenter m_presenter;
 
+        public delegate void Tick();
+        public Tick myTick;
+        private readonly Thread myThread;
+        System.Timers.Timer timer;
+
         /// <summary>
         /// Constructor with initialization
         /// </summary>
@@ -24,6 +31,11 @@ namespace ChatMail.Views
             InitializeComponent();
 
             sendMessageSubmitButton.Click += new EventHandler(SubmitClick);
+
+            myTick = new Tick(MessageTimer_Tick);
+
+            myThread = new Thread(new ThreadStart(ThreadMethod));
+            myThread.Start();
         }
 
         /// <summary>
@@ -101,6 +113,31 @@ namespace ChatMail.Views
             m_presenter.SubmitClicked();
 
         }
+
+        public void MessageTimer_Tick()
+        {
+            m_presenter.TimerTick();
+        }
+
+        private void ChatView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            timer.Stop();
+        }
+
+        /// <summary>
+        /// Method running in another thread handling timer actions
+        /// </summary>
+        private void ThreadMethod()
+        {
+            TimerClass timerClass = new TimerClass(this);
+
+            timer = new System.Timers.Timer
+            {
+                Interval = 5000
+            };
+            timer.Elapsed += new ElapsedEventHandler(timerClass.Run);
+            timer.Start();
+        }
     }
 
     /// <summary>
@@ -121,6 +158,33 @@ namespace ChatMail.Views
         {
             Content = content;
             SelectedUsername = selectedUsername;
+        }
+    }
+
+    /// <summary>
+    /// Class for delegate access of timer to update the messages
+    /// </summary>
+    public class TimerClass
+    {
+        readonly ChatView m_chatView;
+
+        /// <summary>
+        /// Constructor of the TimerClass
+        /// </summary>
+        /// <param name="chatView"></param>
+        public TimerClass(ChatView chatView)
+        {
+            m_chatView = chatView;
+        }
+
+        /// <summary>
+        /// Invoking timer tick on chatView
+        /// </summary>
+        /// <param name="sender">Sender of the event</param>
+        /// <param name="e">Parameters of the event</param>
+        public void Run(object sender, ElapsedEventArgs e)
+        {
+            m_chatView.Invoke(m_chatView.myTick);
         }
     }
 }
