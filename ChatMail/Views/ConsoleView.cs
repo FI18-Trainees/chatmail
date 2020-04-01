@@ -24,9 +24,6 @@ namespace ChatMail.Views
         {
             Logger.debug("Initializing Console View.", origin: "ChatMail.ConsoleView");
             InitializeComponent();
-
-            Logger.debug("Registrating EventHandlers.", origin: "ChatMail.ConsoleView");
-            
         }
 
         public ConsoleView(ConsoleDao dao) : this()

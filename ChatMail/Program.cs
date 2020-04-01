@@ -1,11 +1,12 @@
-using ChatMail.Models;
-using ChatMail.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+using ChatMail.Models;
+using ChatMail.Views;
 
 namespace ChatMail
 {
@@ -49,7 +50,11 @@ namespace ChatMail
 
         public static void Admin()
         {
+            AdminDao adminDao = new AdminDao();
+            AdminView adminView = new AdminView(adminDao);
 
+            Thread adminThread = new Thread(AdminView);
+            adminThread.Start(adminView);
         }
 
         private static void ChatView(object obj)
@@ -63,7 +68,7 @@ namespace ChatMail
         }
         private static void AdminView(object obj)
         {
-
+            Application.Run((AdminView) obj);
         }
     }
 }
