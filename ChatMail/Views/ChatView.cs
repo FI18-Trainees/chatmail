@@ -1,13 +1,15 @@
-﻿using ChatMail.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+using System.Threading;
+using System.Timers;
+
+using ChatMail.Interfaces;
 using ChatMail.Presenter;
 using ChatMail.ViewModels;
 using ChatMail.Models;
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
+using ChatMail.Logging;
 using Message = ChatMail.Models.Message;
-using System.Threading;
-using System.Timers;
 
 namespace ChatMail.Views
 {
@@ -28,10 +30,13 @@ namespace ChatMail.Views
         /// </summary>
         public ChatView()
         {
+            Logger.debug("Initializing Chat View.", origin: "ChatMail.ChatView");
             InitializeComponent();
 
+            Logger.debug("Registrating EventHandlers.", origin: "ChatMail.ChatView");
             sendMessageSubmitButton.Click += new EventHandler(SubmitClick);
 
+            Logger.debug("Initializing Fetch Timer.", origin: "ChatMail.ChatView");
             myTick = new Tick(MessageTimer_Tick);
 
             myThread = new Thread(new ThreadStart(ThreadMethod));
@@ -44,6 +49,7 @@ namespace ChatMail.Views
         /// <param name="dao"></param>
         public ChatView(ChatDao dao) : this()
         {
+            Logger.debug("Initializing Chat Presenter.", origin: "ChatMail.ChatView");
             m_presenter = new ChatPresenter(this, dao);
         }
 
@@ -53,6 +59,7 @@ namespace ChatMail.Views
         /// <param name="messages"></param>
         public void ShowMessages(ChatViewModel viewModel)
         {
+            Logger.debug("Displaying messages.", origin: "ChatMail.ChatView");
             receivedMessagesTextBox.Clear();
 
             foreach (Message message in viewModel.Messages)
@@ -71,6 +78,7 @@ namespace ChatMail.Views
         /// <param name="viewModel">viewModel with the users</param>
         public void ShowUsers(ChatViewModel viewModel)
         {
+            Logger.debug("Displaying users.", origin: "ChatMail.ChatView");
             sendMessageReceiverListBox.Items.Clear();
 
             foreach (User user in viewModel.Users)
@@ -85,6 +93,7 @@ namespace ChatMail.Views
         /// <param name="message"></param>
         public void ShowError(string message)
         {
+            Logger.warning("Error: " + message, origin: "ChatMail.ChatView");
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -99,6 +108,7 @@ namespace ChatMail.Views
         /// <returns></returns>
         public UserInput ReadUserInput()
         {
+            Logger.debug("Reading user input.", origin: "ChatMail.ChatView");
             List<string> selectedUsers = new List<string>();
             foreach(string username in sendMessageReceiverListBox.SelectedItems)
             {
@@ -120,17 +130,20 @@ namespace ChatMail.Views
                 ShowError("Please select a receiver!");
                 return;
             }
+            Logger.debug("User submitted a message.", origin: "ChatMail.ChatView");
             m_presenter.SubmitClicked();
 
         }
 
         public void MessageTimer_Tick()
         {
+            Logger.debug("Fetching messages.", origin: "ChatMail.ChatView");
             m_presenter.TimerTick();
         }
 
         private void ChatView_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Logger.debug("Chat view closing.", origin: "ChatMail.ChatView");
             timer.Stop();
         }
 
@@ -147,6 +160,7 @@ namespace ChatMail.Views
             };
             timer.Elapsed += new ElapsedEventHandler(timerClass.Run);
             timer.Start();
+            Logger.debug("Fetch timer started.", origin: "ChatMail.ChatView");
         }
     }
 
