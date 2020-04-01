@@ -64,11 +64,10 @@ namespace ChatMail.Views
 
             foreach (Message message in viewModel.Messages)
             {
-                receivedMessagesTextBox.Text += (
-                    message.Sender.Firstname + " " + message.Sender.Lastname + ":" + Environment.NewLine,
-                    message.Content + Environment.NewLine,
-                    Environment.NewLine
-                );
+                receivedMessagesTextBox.Text += 
+                    message.Sender.Firstname + " " + message.Sender.Lastname + ":" + Environment.NewLine
+                    + message.Content + Environment.NewLine 
+                    + Environment.NewLine;
             }
         }
 

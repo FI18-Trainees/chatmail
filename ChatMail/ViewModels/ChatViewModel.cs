@@ -1,10 +1,12 @@
-﻿using ChatMail.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using ChatMail.Models;
+using ChatMail.Logging;
 
 namespace ChatMail.ViewModels
 {
@@ -25,6 +27,7 @@ namespace ChatMail.ViewModels
         /// </summary>
         public ChatViewModel(List<Message> messages, List<User> users)
         {
+            Logger.debug("Initalizing ChatViewModel with current data.", origin: "ChatMail.ChatViewModel");
             Messages = messages;
             Users = users;
         }

@@ -11,6 +11,8 @@ namespace ChatMail.Interfaces
     {
         void ShowUsers(LoginViewModel loginViewModel);
         string ReadUserInput();
-        void CloseView();
+        void CloseView(object sender, EventArgs e);
+        void OpenConsoleView(object sender, EventArgs e);
+        void OpenAdminView(object sender, EventArgs e);
     }
 }

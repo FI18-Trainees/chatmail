@@ -35,7 +35,7 @@ namespace ChatMail.Logging
         /// Displays human readable version of logentry
         /// </summary>
         /// <returns>hum readable string</returns>
-        public string display()
+        public string Display()
         {
             string time = this.Timestamp.ToString("yyyy.MM.dd HH:mm:ss");
             return "[" + this.LogLevel.ToString() + "] [" + time + "] " + this.Origin + ": " + this.Content;

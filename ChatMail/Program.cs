@@ -38,9 +38,32 @@ namespace ChatMail
             chatThread.Start(chatView);
         }
 
+        public static void Console()
+        {
+            ConsoleDao consoleDao = new ConsoleDao();
+            ConsoleView consoleView = new ConsoleView(consoleDao);
+
+            Thread consoleThread = new Thread(ConsoleView);
+            consoleThread.Start(consoleView);
+        }
+
+        public static void Admin()
+        {
+
+        }
+
         private static void ChatView(object obj)
         {
             Application.Run((ChatView) obj);
+        }
+
+        private static void ConsoleView(object obj)
+        {
+            Application.Run((ConsoleView) obj);
+        }
+        private static void AdminView(object obj)
+        {
+
         }
     }
 }

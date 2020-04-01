@@ -42,9 +42,7 @@ namespace ChatMail.Presenter
             List<Message> messageList = m_dao.GetAllMessages();
             List<User> userList = m_dao.GetUsers();
 
-            ChatViewModel chatViewModel = ResolveViewModel(messageList, userList);
-
-            m_chatViewModel = chatViewModel;
+            m_chatViewModel = ResolveViewModel(messageList, userList);
 
             m_chatView.ShowMessages(m_chatViewModel);
             m_chatView.ShowUsers(m_chatViewModel);

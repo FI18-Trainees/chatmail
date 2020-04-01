@@ -67,6 +67,18 @@ namespace ChatMail.Presenter
             Close();
         }
 
+        public void Console_Clicked()
+        {
+            Logger.debug("User clicked Console", origin: "ChatMail.ChatPresenter");
+            m_loginDao.Console();
+        }
+
+        public void Admin_Clicked()
+        {
+            Logger.debug("User clicked Admin", origin: "ChatMail.ChatPresenter");
+            m_loginDao.Admin();
+        }
+
         /// <summary>
         /// Gets called when form is closed
         /// </summary>
@@ -82,7 +94,7 @@ namespace ChatMail.Presenter
         private void Close()
         {
             Logger.debug("Call View Close", origin: "ChatMail.ChatPresenter");
-            m_loginView.CloseView();
+            m_loginView.CloseView(null, null);
         }
     }
 }

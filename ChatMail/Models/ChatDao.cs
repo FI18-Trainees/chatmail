@@ -66,7 +66,7 @@ namespace ChatMail.Models
         /// <summary>
         /// retreives current user data
         /// </summary>
-        /// <returns>display name of current user</returns>
+        /// <returns>Display name of current user</returns>
         public string Login()
         {
             Logger.debug("Logging user in and fetching required information.", origin: "ChatMail.ChatDao");
