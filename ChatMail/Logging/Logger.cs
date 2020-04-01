@@ -29,7 +29,6 @@ namespace ChatMail.Logging
                 Debug.WriteLine(newEntry.display());
             }
         }
-
         /// <summary>
         /// Creates logentry with LogLevel Debug
         /// </summary>
