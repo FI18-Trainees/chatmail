@@ -1,8 +1,4 @@
-﻿using ChatMail.Interfaces;
-using ChatMail.Models;
-using ChatMail.Presenter;
-using ChatMail.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+using ChatMail.Interfaces;
+using ChatMail.Models;
+using ChatMail.Presenter;
+using ChatMail.ViewModels;
+using ChatMail.Logging;
+
 
 namespace ChatMail.Views
 {
@@ -26,9 +29,13 @@ namespace ChatMail.Views
         /// </summary>
         public LoginView()
         {
+            Logger.debug("Initializing Login View.", origin: "ChatMail.LoginView");
             InitializeComponent();
 
             userSelectLoginButton.Click += new EventHandler(LoginClick);
+            loginConsoleMenuItem.Click += new EventHandler(OpenConsoleView);
+            loginAdminMenuItem.Click += new EventHandler(OpenAdminView);
+            loginCloseMenuItem.Click += new EventHandler(CloseView);
         }
 
         /// <summary>
@@ -37,6 +44,7 @@ namespace ChatMail.Views
         /// <param name="dao">Data Access Object of the presenter</param>
         public LoginView(LoginDao dao) : this()
         {
+            Logger.debug("Initializing Login Presenter.", origin: "ChatMail.LoginView");
             m_Presenter = new LoginPresenter(this, dao);
         }
 
@@ -46,6 +54,7 @@ namespace ChatMail.Views
         /// <param name="loginViewModel"></param>
         public void ShowUsers(LoginViewModel loginViewModel)
         {
+            Logger.debug("Displaying users.", origin: "ChatMail.LoginView");
             foreach (User user in loginViewModel.Users)
             {
                 // Add user to ComboBox
@@ -61,6 +70,7 @@ namespace ChatMail.Views
         /// <param name="e">Parameters for the event</param>
         public void LoginClick(object sender, EventArgs e)
         {
+            Logger.debug("User clicked Login.", origin: "ChatMail.LoginView");
             if (userSelectComboBox.SelectedIndex == -1)
             {
                 MessageBox.Show("Please select a receiver!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -75,6 +85,7 @@ namespace ChatMail.Views
         /// <returns>selected username</returns>
         public string ReadUserInput()
         {
+            Logger.debug("Reading user input.", origin: "ChatMail.LoginView");
             // Get selected value in ComboBox
             return userSelectComboBox.Text;
         }
@@ -82,9 +93,22 @@ namespace ChatMail.Views
         /// <summary>
         /// Closes the view
         /// </summary>
-        public void CloseView()
+        public void CloseView(object sender, EventArgs e)
         {
-            this.Close();
+            Logger.debug("Close View.", origin: "ChatMail.LoginView");
+            Close();
+        }
+
+        public void OpenConsoleView(object sender, EventArgs e)
+        {
+            Logger.debug("Opening Console View.", origin: "ChatMail.LoginView");
+            m_Presenter.Console_Clicked();
+        }
+
+        public void OpenAdminView(object sender, EventArgs e)
+        {
+            Logger.debug("Opening Admin View.", origin: "ChatMail.LoginView");
+            m_Presenter.Admin_Clicked();
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.IO;
 using ChatMail.Models;
 using Newtonsoft.Json;
+using ChatMail.Logging;
 
 namespace ChatMail.Database
 {
@@ -31,6 +32,8 @@ namespace ChatMail.Database
             {
                 PathToJson = "config/config-default.json";
             }
+
+            Logger.debug("Using config at " + PathToJson, "ChatMail.Database.Handler");
             ConnectionDetails config;
             using (StreamReader r = new StreamReader(PathToJson))
             {
@@ -39,6 +42,7 @@ namespace ChatMail.Database
             }
 
             this.databaseInstance = new DBConnector(config);
+            Logger.info("Initialised DBHandler.", "ChatMail.Database.Handler");
         }
 
         /// <summary>
@@ -47,12 +51,14 @@ namespace ChatMail.Database
         /// <returns>List of user objects</returns>
         public List<User> GetAllUsers()
         {
+            Logger.debug("Selecting all users.", "ChatMail.Database.Handler");
             string sql = File.ReadAllText(@"SQL\selectAllUsers.sql");
 
             DataTable dt = this.databaseInstance.Execute(sql);
             List<User> output = new List<User>();
+            Logger.debug("Got " + dt.Rows.Count + " rows.", "ChatMail.Database.Handler");
 
-            foreach(DataRow row in dt.Rows)
+            foreach (DataRow row in dt.Rows)
             {
                 output.Add(new User(row));
             }
@@ -66,6 +72,7 @@ namespace ChatMail.Database
         /// <returns>User object, null if not found</returns>
         public User GetUserByUserId(int uId)
         {
+            Logger.debug("Selecting user by uId \"" + uId + "\".", "ChatMail.Database.Handler");
             string sql = File.ReadAllText(@"SQL\selectUserByUId.sql");
 
             MySqlCommand command = new MySqlCommand(sql);
@@ -73,6 +80,8 @@ namespace ChatMail.Database
             command.Parameters["@UID"].Value = uId;
 
             DataTable dt = this.databaseInstance.Execute(command);
+            Logger.debug("Got " + dt.Rows.Count + " rows.", "ChatMail.Database.Handler");
+
             foreach (DataRow row in dt.Rows)
             {
                 return new User(row);
@@ -86,10 +95,12 @@ namespace ChatMail.Database
         /// <returns>List of all message objects</returns>
         public List<Message> GetAllMessages()
         {
+            Logger.debug("Selecting all messages.", "ChatMail.Database.Handler");
             string sql = File.ReadAllText(@"SQL\selectAllMessages.sql");
 
             DataTable dt = this.databaseInstance.Execute(sql);
             List<Message> output = new List<Message>();
+            Logger.debug("Got " + dt.Rows.Count + " rows.", "ChatMail.Database.Handler");
 
             foreach (DataRow row in dt.Rows)
             {
@@ -109,6 +120,7 @@ namespace ChatMail.Database
         /// <returns>List of message objects sent to the user</returns>
         public List<Message> GetMessagesByReceiverId(int rId)
         {
+            Logger.debug("Selecting all messages by rId \"" + rId + "\".", "ChatMail.Database.Handler");
             string sql = File.ReadAllText(@"SQL\selectMessageByRId.sql");
 
             MySqlCommand command = new MySqlCommand(sql);
@@ -117,6 +129,7 @@ namespace ChatMail.Database
 
             DataTable dt = this.databaseInstance.Execute(command);
             List<Message> output = new List<Message>();
+            Logger.debug("Got " + dt.Rows.Count + " rows.", "ChatMail.Database.Handler");
 
             foreach (DataRow row in dt.Rows)
             {
@@ -136,6 +149,7 @@ namespace ChatMail.Database
         /// <returns>Message object, null if not found</returns>
         public Message GetMessageByMessageId(int mId)
         {
+            Logger.debug("Selecting all messages by mId \"" + mId + "\".", "ChatMail.Database.Handler");
             string sql = File.ReadAllText(@"SQL\selectMessageByMessageId.sql");
 
             MySqlCommand command = new MySqlCommand(sql);
@@ -143,6 +157,7 @@ namespace ChatMail.Database
             command.Parameters["@MID"].Value = mId;
 
             DataTable dt = this.databaseInstance.Execute(command);
+            Logger.debug("Got " + dt.Rows.Count + " rows.", "ChatMail.Database.Handler");
 
             foreach (DataRow row in dt.Rows)
             {
@@ -161,6 +176,7 @@ namespace ChatMail.Database
         /// <returns>List of all receivers of this message</returns>
         public List<User> GetReceiversByMessageId(int mId)
         {
+            Logger.debug("Selecting all receivers by mId \"" + mId + "\".", "ChatMail.Database.Handler");
             string sql = File.ReadAllText(@"SQL\selectReceiverByMId.sql");
 
             MySqlCommand command = new MySqlCommand(sql);
@@ -169,6 +185,7 @@ namespace ChatMail.Database
 
             DataTable dt = this.databaseInstance.Execute(command);
             List<User> output = new List<User>();
+            Logger.debug("Got " + dt.Rows.Count + " rows.", "ChatMail.Database.Handler");
 
             foreach (DataRow row in dt.Rows)
             {
@@ -185,6 +202,7 @@ namespace ChatMail.Database
         /// <returns></returns>
         private bool InsertMessageReceiver(int mId, int rId)
         {
+            Logger.debug("Inserting MessageReceiver relation.", "ChatMail.Database.Handler");
             string sql = File.ReadAllText(@"SQL\InsertMessageReceiver.sql");
 
             MySqlCommand command = new MySqlCommand(sql);
@@ -197,6 +215,7 @@ namespace ChatMail.Database
             try
             {
                 result = this.databaseInstance.ExecuteNonQuery(command);
+                Logger.debug("Inserting MessageReceiver affects " + result + " rows.", "ChatMail.Database.Handler");
             }
             catch (MySqlException ex)
             {
@@ -211,6 +230,7 @@ namespace ChatMail.Database
         /// <returns>info about success</returns>
         public bool InsertMessage(Message message)
         {
+            Logger.debug("Inserting Message.", "ChatMail.Database.Handler");
             string sql = File.ReadAllText(@"SQL\InsertMessage.sql");
 
             MySqlCommand command = new MySqlCommand(sql);
@@ -253,6 +273,7 @@ namespace ChatMail.Database
                 }
             }
 
+            Logger.debug("Insert Message success: " + success.ToString(), "ChatMail.Database.Handler");
             return success;
         }
         /// <summary>
@@ -262,6 +283,7 @@ namespace ChatMail.Database
         /// <returns>Info about success</returns>
         public bool InsertUser(User user)
         {
+            Logger.debug("Inserting User.", "ChatMail.Database.Handler");
             string sql = File.ReadAllText(@"SQL\insertUser.sql");
 
             MySqlCommand command = new MySqlCommand(sql);
@@ -276,6 +298,7 @@ namespace ChatMail.Database
             try
             {
                 result = this.databaseInstance.ExecuteNonQuery(command);
+                Logger.debug("Inserting User affects " + result + " rows.", "ChatMail.Database.Handler");
             } catch(MySqlException ex)
             {
                 return false;

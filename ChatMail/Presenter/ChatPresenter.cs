@@ -1,12 +1,14 @@
-﻿using ChatMail.Views;
-using ChatMail.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using ChatMail.Views;
+using ChatMail.Models;
 using ChatMail.Interfaces;
 using ChatMail.ViewModels;
+using ChatMail.Logging;
 
 namespace ChatMail.Presenter
 {
@@ -16,14 +18,15 @@ namespace ChatMail.Presenter
     class ChatPresenter
     {
         private readonly IChatView m_chatView;
-        private readonly IChatDao m_dao;
+        private readonly IChatDao m_chatDao;
         private ChatViewModel m_chatViewModel;
         private string m_currentUserDisplayname;
 
         public ChatPresenter(ChatView chatView, ChatDao dao)
         {
+            Logger.debug("Initalizing Chat Presenter.", origin: "ChatMail.ChatPresenter");
             m_chatView = chatView;
-            m_dao = dao;
+            m_chatDao = dao;
 
             Login();
             m_chatView.ShowUsername(m_currentUserDisplayname);
@@ -34,13 +37,12 @@ namespace ChatMail.Presenter
         /// </summary>
         private void Login()
         {
-            m_currentUserDisplayname = m_dao.Login();
-            List<Message> messageList = m_dao.GetAllMessages();
-            List<User> userList = m_dao.GetUsers();
+            Logger.debug("Loggin user in and initializing components.", origin: "ChatMail.ChatPresenter");
+            m_currentUserDisplayname = m_chatDao.Login();
+            List<Message> messageList = m_chatDao.GetAllMessages();
+            List<User> userList = m_chatDao.GetUsers();
 
-            ChatViewModel chatViewModel = ResolveViewModel(messageList, userList);
-
-            m_chatViewModel = chatViewModel;
+            m_chatViewModel = ResolveViewModel(messageList, userList);
 
             m_chatView.ShowMessages(m_chatViewModel);
             m_chatView.ShowUsers(m_chatViewModel);
@@ -53,7 +55,8 @@ namespace ChatMail.Presenter
         /// </summary>
         private void Update()
         {
-            List<Message> messageList = m_dao.GetAllMessages();
+            Logger.debug("Updating presenter and distributing data.", origin: "ChatMail.ChatPresenter");
+            List<Message> messageList = m_chatDao.GetAllMessages();
 
             ChatViewModel chatViewModel = ResolveViewModel(messageList, m_chatViewModel.Users);
 
@@ -69,6 +72,7 @@ namespace ChatMail.Presenter
         /// <returns></returns>
         private ChatViewModel ResolveViewModel(List<Message> messageList, List<User> userList)
         {
+            Logger.debug("Creating new ChatViewModel with current data.", origin: "ChatMail.ChatPresenter");
             return new ChatViewModel(messageList, userList);
         }
 
@@ -78,14 +82,27 @@ namespace ChatMail.Presenter
         /// </summary>
         public void SubmitClicked()
         {
+            Logger.debug("User submitted a message.", origin: "ChatMail.ChatPresenter");
             UserInput userInput = m_chatView.ReadUserInput();
             if (userInput.Content == string.Empty)
                 return;
             if (userInput.SelectedUsername.Count() == 0)
                 return;
             
-            m_dao.SendMessage(userInput);
+            m_chatDao.SendMessage(userInput);
             Update();
+        }
+
+        public void Console_Clicked()
+        {
+            Logger.debug("User clicked Console", origin: "ChatMail.ChatPresenter");
+            m_chatDao.Console();
+        }
+
+        public void Admin_Clicked()
+        {
+            Logger.debug("User clicked Admin", origin: "ChatMail.ChatPresenter");
+            m_chatDao.Admin();
         }
 
         public void TimerTick()

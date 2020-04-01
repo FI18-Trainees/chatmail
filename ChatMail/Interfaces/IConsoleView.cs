@@ -1,4 +1,5 @@
 ﻿using ChatMail.Models;
+using ChatMail.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,8 @@ using System.Threading.Tasks;
 
 namespace ChatMail.Interfaces
 {
-    public interface ILoginDao
+    interface IConsoleView
     {
-        List<User> GetUsers();
-        void Login(string selectedUser);
-        void Console();
-        void Admin();
+        void DisplayDebug(ConsoleViewModel viewModel);
     }
 }

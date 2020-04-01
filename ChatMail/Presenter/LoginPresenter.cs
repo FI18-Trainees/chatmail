@@ -1,12 +1,14 @@
-﻿using ChatMail.Interfaces;
-using ChatMail.Models;
-using ChatMail.ViewModels;
-using ChatMail.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using ChatMail.Interfaces;
+using ChatMail.Models;
+using ChatMail.ViewModels;
+using ChatMail.Views;
+using ChatMail.Logging;
 
 namespace ChatMail.Presenter
 {
@@ -22,6 +24,7 @@ namespace ChatMail.Presenter
         /// <param name="loginDao">Data Access Object of the presenter</param>
         public LoginPresenter(LoginView loginView, LoginDao loginDao)
         {
+            Logger.debug("Initializing Login Presenter", origin: "ChatMail.LoginPresenter");
             m_loginView = loginView;
             m_loginDao = loginDao;
 
@@ -33,6 +36,7 @@ namespace ChatMail.Presenter
         /// </summary>
         private void Login()
         {
+            Logger.debug("Logging user in and initalizing components", origin: "ChatMail.LoginPresenter");
             List<User> users = m_loginDao.GetUsers();
 
             LoginViewModel loginViewModel = ResolveViewModel(users);
@@ -47,6 +51,7 @@ namespace ChatMail.Presenter
         /// <returns>viewModel with users inside</returns>
         private LoginViewModel ResolveViewModel(List<User> users)
         {
+            Logger.debug("Creating new LoginViewModel with current data.", origin: "ChatMail.LoginPresenter");
             return new LoginViewModel(users);
         }
 
@@ -56,9 +61,22 @@ namespace ChatMail.Presenter
         /// </summary>
         public void Login_Clicked()
         {
+            Logger.debug("User clicked Login", origin: "ChatMail.ChatPresenter");
             string input = m_loginView.ReadUserInput();
             m_loginDao.Login(input);
             Close();
+        }
+
+        public void Console_Clicked()
+        {
+            Logger.debug("User clicked Console", origin: "ChatMail.ChatPresenter");
+            m_loginDao.Console();
+        }
+
+        public void Admin_Clicked()
+        {
+            Logger.debug("User clicked Admin", origin: "ChatMail.ChatPresenter");
+            m_loginDao.Admin();
         }
 
         /// <summary>
@@ -66,6 +84,7 @@ namespace ChatMail.Presenter
         /// </summary>
         public void Close_Clicked()
         {
+            Logger.debug("User clicked close", origin: "ChatMail.ChatPresenter");
             Close();
         }
 
@@ -74,7 +93,8 @@ namespace ChatMail.Presenter
         /// </summary>
         private void Close()
         {
-            m_loginView.CloseView();
+            Logger.debug("Call View Close", origin: "ChatMail.ChatPresenter");
+            m_loginView.CloseView(null, null);
         }
     }
 }
