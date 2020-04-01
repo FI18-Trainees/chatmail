@@ -1,12 +1,14 @@
-﻿using ChatMail.Database;
-using ChatMail.Interfaces;
-using ChatMail.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+
+using ChatMail.Database;
+using ChatMail.Interfaces;
+using ChatMail.Views;
+using ChatMail.Logging;
 
 namespace ChatMail.Models
 {
@@ -20,6 +22,7 @@ namespace ChatMail.Models
         /// <returns>List of all users</returns>
         public List<User> GetUsers()
         {
+            Logger.debug("Fetching users", origin: "ChatMail.LoginDao");
             // Retreive users from DBHandler
             return dBHandler.GetAllUsers();
         }
@@ -30,6 +33,7 @@ namespace ChatMail.Models
         /// <param name="selectedUser">selected username</param>
         public void Login(string selectedUser)
         {
+            Logger.debug("Logging user in", origin: "ChatMail.LoginDao");
             // Open ChatView and pass selectedUser
             Program.Chat(selectedUser);
         }

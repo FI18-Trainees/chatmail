@@ -1,12 +1,14 @@
-﻿using ChatMail.Views;
-using ChatMail.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using ChatMail.Views;
+using ChatMail.Models;
 using ChatMail.Interfaces;
 using ChatMail.ViewModels;
+using ChatMail.Logging;
 
 namespace ChatMail.Presenter
 {
@@ -22,6 +24,7 @@ namespace ChatMail.Presenter
 
         public ChatPresenter(ChatView chatView, ChatDao dao)
         {
+            Logger.debug("Initalizing Chat Presenter.", origin: "ChatMail.ChatPresenter");
             m_chatView = chatView;
             m_dao = dao;
 
@@ -34,6 +37,7 @@ namespace ChatMail.Presenter
         /// </summary>
         private void Login()
         {
+            Logger.debug("Loggin user in and initializing components.", origin: "ChatMail.ChatPresenter");
             m_currentUserDisplayname = m_dao.Login();
             List<Message> messageList = m_dao.GetAllMessages();
             List<User> userList = m_dao.GetUsers();
@@ -53,6 +57,7 @@ namespace ChatMail.Presenter
         /// </summary>
         private void Update()
         {
+            Logger.debug("Updating presenter and distributing data.", origin: "ChatMail.ChatPresenter");
             List<Message> messageList = m_dao.GetAllMessages();
 
             ChatViewModel chatViewModel = ResolveViewModel(messageList, m_chatViewModel.Users);
@@ -69,6 +74,7 @@ namespace ChatMail.Presenter
         /// <returns></returns>
         private ChatViewModel ResolveViewModel(List<Message> messageList, List<User> userList)
         {
+            Logger.debug("Creating new ChatViewModel with current data.", origin: "ChatMail.ChatPresenter");
             return new ChatViewModel(messageList, userList);
         }
 
@@ -78,6 +84,7 @@ namespace ChatMail.Presenter
         /// </summary>
         public void SubmitClicked()
         {
+            Logger.debug("User submitted a message.", origin: "ChatMail.ChatPresenter");
             UserInput userInput = m_chatView.ReadUserInput();
             if (userInput.Content == string.Empty)
                 return;

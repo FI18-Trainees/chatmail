@@ -1,11 +1,13 @@
-﻿using ChatMail.Database;
-using ChatMail.Interfaces;
-using ChatMail.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using ChatMail.Database;
+using ChatMail.Interfaces;
+using ChatMail.Views;
+using ChatMail.Logging;
 
 namespace ChatMail.Models
 {
@@ -25,7 +27,7 @@ namespace ChatMail.Models
         /// <param name="receieverId">UserID of the receiver</param>
         public void SendMessage(UserInput userInput)
         {
-            
+            Logger.debug("Sending message.", origin: "ChatMail.ChatDao");
             List<User> users = GetUsers();
             //int index = users.FindIndex(user => user.Displayname == userInput.SelectedUsername);
             // Send message via DBHandler
@@ -45,6 +47,7 @@ namespace ChatMail.Models
         /// <returns>List of received messages</returns>
         public List<Message> GetAllMessages()
         {
+            Logger.debug("Fetching messages.", origin: "ChatMail.ChatDao");
             // Get messages via DBHandler
             return dBHandler.GetMessagesByReceiverId(currentUser.UId);
         }
@@ -55,6 +58,7 @@ namespace ChatMail.Models
         /// <returns>List of users</returns>
         public List<User> GetUsers()
         {
+            Logger.debug("Fetching users.", origin: "ChatMail.ChatDao");
             // Get users via DBHandler
             return dBHandler.GetAllUsers();
         }
@@ -65,6 +69,7 @@ namespace ChatMail.Models
         /// <returns>display name of current user</returns>
         public string Login()
         {
+            Logger.debug("Logging user in and fetching required information.", origin: "ChatMail.ChatDao");
             // retreive user data via DBHandler
             string currentUserName = Program.currentUser;
             List<User> users = GetUsers();
