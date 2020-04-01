@@ -26,7 +26,7 @@ namespace ChatMail.Logging
 
             if (logToDebug && loggerLevel <= newEntry.LogLevel)
             {
-                Debug.WriteLine(newEntry.display());
+                Debug.WriteLine(newEntry.Display());
             }
         }
         /// <summary>

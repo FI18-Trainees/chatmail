@@ -37,5 +37,17 @@ namespace ChatMail.Models
             // Open ChatView and pass selectedUser
             Program.Chat(selectedUser);
         }
+
+        public void Console()
+        {
+            Logger.debug("Opening Console", origin: "ChatMail.LoginDao");
+            Program.Console();
+        }
+
+        public void Admin()
+        {
+            Logger.debug("Logging user Admin", origin: "ChatMail.LoginDao");
+            Program.Admin();
+        }
     }
 }

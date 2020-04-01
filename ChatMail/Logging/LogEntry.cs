@@ -21,9 +21,9 @@ namespace ChatMail.Logging
         /// <param name="logLevel">LogLevel of this message</param>
         public LogEntry(string content, string origin, LogLevel logLevel)
         {
-            if (!content.StartsWith("ChatMail"))
+            if (!origin.StartsWith("ChatMail"))
             {
-                content = "ChatMail." + content;
+                origin = "ChatMail." + origin;
             }
             this.Content = content;
             this.Origin = origin;
@@ -35,7 +35,7 @@ namespace ChatMail.Logging
         /// Displays human readable version of logentry
         /// </summary>
         /// <returns>hum readable string</returns>
-        public string display()
+        public string Display()
         {
             string time = this.Timestamp.ToString("yyyy.MM.dd HH:mm:ss");
             return "[" + this.LogLevel.ToString() + "] [" + time + "] " + this.Origin + ": " + this.Content;

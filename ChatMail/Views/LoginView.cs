@@ -33,6 +33,9 @@ namespace ChatMail.Views
             InitializeComponent();
 
             userSelectLoginButton.Click += new EventHandler(LoginClick);
+            loginConsoleMenuItem.Click += new EventHandler(OpenConsoleView);
+            loginAdminMenuItem.Click += new EventHandler(OpenAdminView);
+            loginCloseMenuItem.Click += new EventHandler(CloseView);
         }
 
         /// <summary>
@@ -90,10 +93,22 @@ namespace ChatMail.Views
         /// <summary>
         /// Closes the view
         /// </summary>
-        public void CloseView()
+        public void CloseView(object sender, EventArgs e)
         {
-            Logger.debug("Close View", origin: "ChatMail.LoginView");
-            this.Close();
+            Logger.debug("Close View.", origin: "ChatMail.LoginView");
+            Close();
+        }
+
+        public void OpenConsoleView(object sender, EventArgs e)
+        {
+            Logger.debug("Opening Console View.", origin: "ChatMail.LoginView");
+            m_Presenter.Console_Clicked();
+        }
+
+        public void OpenAdminView(object sender, EventArgs e)
+        {
+            Logger.debug("Opening Admin View.", origin: "ChatMail.LoginView");
+            m_Presenter.Admin_Clicked();
         }
     }
 }

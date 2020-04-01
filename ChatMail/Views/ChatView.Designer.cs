@@ -35,8 +35,14 @@
             this.sendMessageReceiverListBox = new System.Windows.Forms.ListBox();
             this.receivedMessageGroupBox = new System.Windows.Forms.GroupBox();
             this.receivedMessagesTextBox = new System.Windows.Forms.TextBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.chatFileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chatCloseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chatConsoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chatAdminMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sendMessageGroupBox.SuspendLayout();
             this.receivedMessageGroupBox.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // sendMessageGroupBox
@@ -45,7 +51,7 @@
             this.sendMessageGroupBox.Controls.Add(this.sendMessageSubmitButton);
             this.sendMessageGroupBox.Controls.Add(this.sendMessageReceiverLabel);
             this.sendMessageGroupBox.Controls.Add(this.sendMessageReceiverListBox);
-            this.sendMessageGroupBox.Location = new System.Drawing.Point(12, 12);
+            this.sendMessageGroupBox.Location = new System.Drawing.Point(12, 53);
             this.sendMessageGroupBox.Name = "sendMessageGroupBox";
             this.sendMessageGroupBox.Size = new System.Drawing.Size(1240, 318);
             this.sendMessageGroupBox.TabIndex = 0;
@@ -91,9 +97,9 @@
             // receivedMessageGroupBox
             // 
             this.receivedMessageGroupBox.Controls.Add(this.receivedMessagesTextBox);
-            this.receivedMessageGroupBox.Location = new System.Drawing.Point(12, 336);
+            this.receivedMessageGroupBox.Location = new System.Drawing.Point(12, 377);
             this.receivedMessageGroupBox.Name = "receivedMessageGroupBox";
-            this.receivedMessageGroupBox.Size = new System.Drawing.Size(1240, 333);
+            this.receivedMessageGroupBox.Size = new System.Drawing.Size(1240, 292);
             this.receivedMessageGroupBox.TabIndex = 2;
             this.receivedMessageGroupBox.TabStop = false;
             this.receivedMessageGroupBox.Text = "Received messages";
@@ -107,6 +113,44 @@
             this.receivedMessagesTextBox.Size = new System.Drawing.Size(1228, 308);
             this.receivedMessagesTextBox.TabIndex = 0;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.chatFileMenuItem,
+            this.chatConsoleMenuItem,
+            this.chatAdminMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1264, 24);
+            this.menuStrip1.TabIndex = 3;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // chatFileMenuItem
+            // 
+            this.chatFileMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.chatCloseMenuItem});
+            this.chatFileMenuItem.Name = "chatFileMenuItem";
+            this.chatFileMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.chatFileMenuItem.Text = "File";
+            // 
+            // chatCloseMenuItem
+            // 
+            this.chatCloseMenuItem.Name = "chatCloseMenuItem";
+            this.chatCloseMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.chatCloseMenuItem.Text = "Close";
+            // 
+            // chatConsoleMenuItem
+            // 
+            this.chatConsoleMenuItem.Name = "chatConsoleMenuItem";
+            this.chatConsoleMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.chatConsoleMenuItem.Text = "Console";
+            // 
+            // chatAdminMenuItem
+            // 
+            this.chatAdminMenuItem.Name = "chatAdminMenuItem";
+            this.chatAdminMenuItem.Size = new System.Drawing.Size(55, 20);
+            this.chatAdminMenuItem.Text = "Admin";
+            // 
             // ChatView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -114,6 +158,8 @@
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.receivedMessageGroupBox);
             this.Controls.Add(this.sendMessageGroupBox);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "ChatView";
             this.Text = "ChatMail";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChatView_FormClosing);
@@ -121,7 +167,10 @@
             this.sendMessageGroupBox.PerformLayout();
             this.receivedMessageGroupBox.ResumeLayout(false);
             this.receivedMessageGroupBox.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -134,6 +183,11 @@
         private System.Windows.Forms.ListBox sendMessageReceiverListBox;
         private System.Windows.Forms.GroupBox receivedMessageGroupBox;
         private System.Windows.Forms.TextBox receivedMessagesTextBox;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem chatFileMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem chatCloseMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem chatConsoleMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem chatAdminMenuItem;
     }
 }
 

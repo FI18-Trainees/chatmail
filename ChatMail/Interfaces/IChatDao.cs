@@ -10,5 +10,7 @@ namespace ChatMail.Interfaces
         string Login();
         List<Message> GetAllMessages();
         List<User> GetUsers();
+        void Console();
+        void Admin();
     }
 }

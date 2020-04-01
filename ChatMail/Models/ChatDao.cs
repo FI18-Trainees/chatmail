@@ -66,7 +66,7 @@ namespace ChatMail.Models
         /// <summary>
         /// retreives current user data
         /// </summary>
-        /// <returns>display name of current user</returns>
+        /// <returns>Display name of current user</returns>
         public string Login()
         {
             Logger.debug("Logging user in and fetching required information.", origin: "ChatMail.ChatDao");
@@ -76,6 +76,18 @@ namespace ChatMail.Models
             int index = users.FindIndex(user => user.Displayname == currentUserName);
             currentUser = users[index];
             return currentUserName;
+        }
+
+        public void Console()
+        {
+            Logger.debug("Opening Console", origin: "ChatMail.ChatDao");
+            Program.Console();
+        }
+
+        public void Admin()
+        {
+            Logger.debug("Logging user Admin", origin: "ChatMail.ChatDao");
+            Program.Admin();
         }
     }
 }
