@@ -21,9 +21,9 @@ namespace ChatMail.Logging
         /// <param name="logLevel">LogLevel of this message</param>
         public LogEntry(string content, string origin, LogLevel logLevel)
         {
-            if (!content.StartsWith("ChatMail"))
+            if (!origin.StartsWith("ChatMail"))
             {
-                content = "ChatMail." + content;
+                origin = "ChatMail." + origin;
             }
             this.Content = content;
             this.Origin = origin;

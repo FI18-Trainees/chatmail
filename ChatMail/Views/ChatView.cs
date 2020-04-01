@@ -35,6 +35,9 @@ namespace ChatMail.Views
 
             Logger.debug("Registrating EventHandlers.", origin: "ChatMail.ChatView");
             sendMessageSubmitButton.Click += new EventHandler(SubmitClick);
+            chatCloseMenuItem.Click += new EventHandler(CloseView);
+            chatConsoleMenuItem.Click += new EventHandler(OpenConsoleView);
+            chatAdminMenuItem.Click += new EventHandler(OpenAdminView);
 
             Logger.debug("Initializing Fetch Timer.", origin: "ChatMail.ChatView");
             myTick = new Tick(MessageTimer_Tick);
@@ -138,6 +141,24 @@ namespace ChatMail.Views
         {
             Logger.debug("Fetching messages.", origin: "ChatMail.ChatView");
             m_presenter.TimerTick();
+        }
+
+        public void CloseView(object sender, EventArgs e)
+        {
+            Logger.debug("Close View.", origin: "ChatMail.ChatView");
+            Close();
+        }
+
+        public void OpenConsoleView(object sender, EventArgs e)
+        {
+            Logger.debug("Opening Console View.", origin: "ChatMail.LoginView");
+            m_presenter.Console_Clicked();
+        }
+
+        public void OpenAdminView(object sender, EventArgs e)
+        {
+            Logger.debug("Opening Admin View.", origin: "ChatMail.LoginView");
+            m_presenter.Admin_Clicked();
         }
 
         private void ChatView_FormClosing(object sender, FormClosingEventArgs e)

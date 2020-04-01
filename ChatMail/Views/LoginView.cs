@@ -96,7 +96,7 @@ namespace ChatMail.Views
         public void CloseView(object sender, EventArgs e)
         {
             Logger.debug("Close View.", origin: "ChatMail.LoginView");
-            this.Close();
+            Close();
         }
 
         public void OpenConsoleView(object sender, EventArgs e)

@@ -18,7 +18,7 @@ namespace ChatMail.Presenter
     class ChatPresenter
     {
         private readonly IChatView m_chatView;
-        private readonly IChatDao m_dao;
+        private readonly IChatDao m_chatDao;
         private ChatViewModel m_chatViewModel;
         private string m_currentUserDisplayname;
 
@@ -26,7 +26,7 @@ namespace ChatMail.Presenter
         {
             Logger.debug("Initalizing Chat Presenter.", origin: "ChatMail.ChatPresenter");
             m_chatView = chatView;
-            m_dao = dao;
+            m_chatDao = dao;
 
             Login();
             m_chatView.ShowUsername(m_currentUserDisplayname);
@@ -38,9 +38,9 @@ namespace ChatMail.Presenter
         private void Login()
         {
             Logger.debug("Loggin user in and initializing components.", origin: "ChatMail.ChatPresenter");
-            m_currentUserDisplayname = m_dao.Login();
-            List<Message> messageList = m_dao.GetAllMessages();
-            List<User> userList = m_dao.GetUsers();
+            m_currentUserDisplayname = m_chatDao.Login();
+            List<Message> messageList = m_chatDao.GetAllMessages();
+            List<User> userList = m_chatDao.GetUsers();
 
             m_chatViewModel = ResolveViewModel(messageList, userList);
 
@@ -56,7 +56,7 @@ namespace ChatMail.Presenter
         private void Update()
         {
             Logger.debug("Updating presenter and distributing data.", origin: "ChatMail.ChatPresenter");
-            List<Message> messageList = m_dao.GetAllMessages();
+            List<Message> messageList = m_chatDao.GetAllMessages();
 
             ChatViewModel chatViewModel = ResolveViewModel(messageList, m_chatViewModel.Users);
 
@@ -89,8 +89,20 @@ namespace ChatMail.Presenter
             if (userInput.SelectedUsername.Count() == 0)
                 return;
             
-            m_dao.SendMessage(userInput);
+            m_chatDao.SendMessage(userInput);
             Update();
+        }
+
+        public void Console_Clicked()
+        {
+            Logger.debug("User clicked Console", origin: "ChatMail.ChatPresenter");
+            m_chatDao.Console();
+        }
+
+        public void Admin_Clicked()
+        {
+            Logger.debug("User clicked Admin", origin: "ChatMail.ChatPresenter");
+            m_chatDao.Admin();
         }
 
         public void TimerTick()

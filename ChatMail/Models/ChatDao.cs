@@ -77,5 +77,17 @@ namespace ChatMail.Models
             currentUser = users[index];
             return currentUserName;
         }
+
+        public void Console()
+        {
+            Logger.debug("Opening Console", origin: "ChatMail.ChatDao");
+            Program.Console();
+        }
+
+        public void Admin()
+        {
+            Logger.debug("Logging user Admin", origin: "ChatMail.ChatDao");
+            Program.Admin();
+        }
     }
 }
