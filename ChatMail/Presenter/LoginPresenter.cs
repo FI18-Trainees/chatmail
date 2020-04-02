@@ -34,7 +34,7 @@ namespace ChatMail.Presenter
         /// <summary>
         /// Gets all users from dao and creates viewModel which is passed to the view
         /// </summary>
-        private void Login()
+        public void Login()
         {
             Logger.debug("Logging user in and initalizing components", origin: "ChatMail.LoginPresenter");
             List<User> users = m_loginDao.GetUsers();
@@ -67,12 +67,18 @@ namespace ChatMail.Presenter
             Close();
         }
 
+        /// <summary>
+        /// User clicked on Console menu item
+        /// </summary>
         public void Console_Clicked()
         {
             Logger.debug("User clicked Console", origin: "ChatMail.ChatPresenter");
             m_loginDao.Console();
         }
 
+        /// <summary>
+        /// User clicked on the admin menu item
+        /// </summary>
         public void Admin_Clicked()
         {
             Logger.debug("User clicked Admin", origin: "ChatMail.ChatPresenter");

@@ -35,6 +35,7 @@
             this.loginCloseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loginConsoleMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loginAdminMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loginUpdateUsersMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,6 +72,7 @@
             // loginFileMenuItem
             // 
             this.loginFileMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loginUpdateUsersMenuItem,
             this.loginCloseMenuItem});
             this.loginFileMenuItem.Name = "loginFileMenuItem";
             this.loginFileMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -93,6 +95,12 @@
             this.loginAdminMenuItem.Name = "loginAdminMenuItem";
             this.loginAdminMenuItem.Size = new System.Drawing.Size(55, 20);
             this.loginAdminMenuItem.Text = "Admin";
+            // 
+            // loginUpdateUsersMenuItem
+            // 
+            this.loginUpdateUsersMenuItem.Name = "loginUpdateUsersMenuItem";
+            this.loginUpdateUsersMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loginUpdateUsersMenuItem.Text = "Update Users";
             // 
             // LoginView
             // 
@@ -121,5 +129,6 @@
         private System.Windows.Forms.ToolStripMenuItem loginCloseMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loginConsoleMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loginAdminMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loginUpdateUsersMenuItem;
     }
 }
