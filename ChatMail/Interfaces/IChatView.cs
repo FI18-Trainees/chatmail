@@ -1,11 +1,12 @@
-﻿using ChatMail.Models;
-using ChatMail.ViewModels;
-using ChatMail.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using ChatMail.Models;
+using ChatMail.ViewModels;
+using ChatMail.Views;
 
 namespace ChatMail.Interfaces
 {

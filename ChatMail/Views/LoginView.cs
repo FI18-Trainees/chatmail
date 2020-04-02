@@ -36,6 +36,7 @@ namespace ChatMail.Views
             loginConsoleMenuItem.Click += new EventHandler(OpenConsoleView);
             loginAdminMenuItem.Click += new EventHandler(OpenAdminView);
             loginCloseMenuItem.Click += new EventHandler(CloseView);
+            loginUpdateUsersMenuItem.Click += new EventHandler(UpdateUsers);
         }
 
         /// <summary>
@@ -90,21 +91,39 @@ namespace ChatMail.Views
             return userSelectComboBox.Text;
         }
 
+        public void UpdateUsers(object sender, EventArgs e)
+        {
+            Logger.debug("Updating user list.", origin: "ChatMail.LoginView");
+            m_Presenter.Login();
+        }
+
         /// <summary>
         /// Closes the view
         /// </summary>
+        /// <param name="sender">Object which triggered the event</param>
+        /// <param name="e">Parameter for the event</param>
         public void CloseView(object sender, EventArgs e)
         {
             Logger.debug("Close View.", origin: "ChatMail.LoginView");
             Close();
         }
 
+        /// <summary>
+        /// Opens the Console View
+        /// </summary>
+        /// <param name="sender">Object which triggered the event</param>
+        /// <param name="e">Parameter for the event</param>
         public void OpenConsoleView(object sender, EventArgs e)
         {
             Logger.debug("Opening Console View.", origin: "ChatMail.LoginView");
             m_Presenter.Console_Clicked();
         }
 
+        /// <summary>
+        /// Opens the Admin View
+        /// </summary>
+        /// <param name="sender">Object which triggered the event</param>
+        /// <param name="e">Parameter for the event</param>
         public void OpenAdminView(object sender, EventArgs e)
         {
             Logger.debug("Opening Admin View.", origin: "ChatMail.LoginView");
