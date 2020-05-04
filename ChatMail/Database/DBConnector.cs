@@ -65,6 +65,7 @@ namespace ChatMail.Database
                     connection.Open();
                 } catch (MySqlException ex)
                 {
+                    Logger.critical("Could not connect to database.\n" + ex.Message, "ChatMail.Database.Connector");
                     throw new DatabaseConnectionError("Could not connect to database.", ex);
                 }
             }
@@ -84,6 +85,7 @@ namespace ChatMail.Database
                 }
                 catch (MySqlException ex)
                 {
+                    Logger.critical("Could not disconnect from database.\n" + ex.Message, "ChatMail.Database.Connector");
                     throw new DatabaseConnectionError("Could not disconnect from database.", ex);
                 }
             }
@@ -93,7 +95,8 @@ namespace ChatMail.Database
         /// </summary>
         /// <param name="sql">sql clause</param>
         /// <returns>Fetched Datatable</returns>
-        /// <exception cref="ChatMail.Exceptions.DatabaseConnectionError">Throws when query could not be executed successfully.</exception>
+        /// <exception cref="ChatMail.Exceptions.DatabaseConnectionError">Throws when a connection error occures.</exception>
+        /// <exception cref="MySqlException">Throws when query could not be executed successfully.</exception>
         public DataTable Execute(string sql)
         {
             Logger.info("Executing \"" + sql + "\".", "ChatMail.Database.Connector");
@@ -116,7 +119,8 @@ namespace ChatMail.Database
         /// </summary>
         /// <param name="command">MySqlCommand to execute</param>
         /// <returns>Fetched Datatable</returns>
-        /// <exception cref="ChatMail.Exceptions.DatabaseConnectionError">Throws when query could not be executed successfully.</exception>
+        /// <exception cref="ChatMail.Exceptions.DatabaseConnectionError">Throws when a connection error occures.</exception>
+        /// <exception cref="MySqlException">Throws when query could not be executed successfully.</exception>
         public DataTable Execute(MySqlCommand command)
         {
             Logger.info("Executing \"" + command.CommandText + "\".", "ChatMail.Database.Connector");
@@ -135,7 +139,8 @@ namespace ChatMail.Database
         /// </summary>
         /// <param name="command">MySqlCommand to execute</param>
         /// <returns>Count of affected rows</returns>
-        /// <exception cref="ChatMail.Exceptions.DatabaseConnectionError">Throws when query could not be executed successfully.</exception>
+        /// <exception cref="ChatMail.Exceptions.DatabaseConnectionError">Throws when a connection error occures.</exception>
+        /// <exception cref="MySqlException">Throws when query could not be executed successfully.</exception>
         public int ExecuteNonQuery(MySqlCommand command)
         {
             Logger.info("Executing \"" + command.CommandText + "\".", "ChatMail.Database.Connector");
