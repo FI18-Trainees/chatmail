@@ -42,7 +42,7 @@ Softwaretests sind meist automatisierte Scripts, die gewisse Eigenschaften von S
 
 \> dotnet build
 
-Hiermit testen wir alle eingehenden PullRequests (Änderungen) auf Kompilierungsfehler. Dies testen wir mit GitHub Actions; GitHub Actions ist ein VM-basiertes Tool, welches automatisch Scripte u.Ä. ausführt, Ergebnisse kontrolliert und entsprechend die Änderungen als fehlerhaft und gültig markiert.
+Hiermit testen wir alle eingehenden PullRequests (Änderungen) auf Kompilierungsfehler. Dies testen wir mit GitHub Actions; GitHub Actions ist ein VM-basiertes Tool, welches automatisch Scripte u.Ä. ausführt, Ergebnisse kontrolliert und entsprechend die Änderungen als fehlerhaft oder gültig markiert.
 
 \> Unittests
 
@@ -50,7 +50,7 @@ Desweiteren verwenden wir Unittests, die die korrekte Funktion des Datenbankkonn
 
 \> Integrationtest
 
-Ein Integrationtest spiegelt die Kombination mehrere Unittests gleichzeitig wieder. Hierbei wird also die korrekte Funktion der Einheiten (Units) untereinander überprüft.
+Ein Integrationtest spiegelt die Kombination mehrere Unittests gleichzeitig wider. Hierbei wird also die korrekte Funktion der Einheiten (Units) untereinander überprüft.
 
 ## Misc
 
