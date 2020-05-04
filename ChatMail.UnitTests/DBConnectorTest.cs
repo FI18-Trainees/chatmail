@@ -6,6 +6,7 @@ using ChatMail.Models;
 using System.IO;
 using Newtonsoft.Json;
 using MySql.Data.MySqlClient;
+using ChatMail.Exceptions;
 
 namespace ChatMail.UnitTests
 {
@@ -39,7 +40,7 @@ namespace ChatMail.UnitTests
             invalidConfig.Port += 10;
             DBConnector db = new DBConnector(invalidConfig);
 
-            Assert.ThrowsException<MySqlException>(db.Open);
+            Assert.ThrowsException<DatabaseConnectionError>(db.Open);
         }
 
         [TestMethod]

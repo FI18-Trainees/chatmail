@@ -49,6 +49,7 @@ namespace ChatMail.Database
         /// Gets list of all registered users
         /// </summary>
         /// <returns>List of user objects</returns>
+        /// <exception cref="ChatMail.Exceptions.DatabaseConnectionError">Throws when query could not be executed successfully.</exception>
         public List<User> GetAllUsers()
         {
             Logger.debug("Selecting all users.", "ChatMail.Database.Handler");
@@ -70,6 +71,7 @@ namespace ChatMail.Database
         /// </summary>
         /// <param name="uId">User id to search for</param>
         /// <returns>User object, null if not found</returns>
+        /// <exception cref="ChatMail.Exceptions.DatabaseConnectionError">Throws when query could not be executed successfully.</exception>
         public User GetUserByUserId(int uId)
         {
             Logger.debug("Selecting user by uId \"" + uId + "\".", "ChatMail.Database.Handler");
@@ -93,6 +95,7 @@ namespace ChatMail.Database
         /// Gets a list of all sent messages
         /// </summary>
         /// <returns>List of all message objects</returns>
+        /// <exception cref="ChatMail.Exceptions.DatabaseConnectionError">Throws when query could not be executed successfully.</exception>
         public List<Message> GetAllMessages()
         {
             Logger.debug("Selecting all messages.", "ChatMail.Database.Handler");
@@ -118,6 +121,7 @@ namespace ChatMail.Database
         /// </summary>
         /// <param name="rId">ID of user that received messages</param>
         /// <returns>List of message objects sent to the user</returns>
+        /// <exception cref="ChatMail.Exceptions.DatabaseConnectionError">Throws when query could not be executed successfully.</exception>
         public List<Message> GetMessagesByReceiverId(int rId)
         {
             Logger.debug("Selecting all messages by rId \"" + rId + "\".", "ChatMail.Database.Handler");
@@ -147,6 +151,7 @@ namespace ChatMail.Database
         /// </summary>
         /// <param name="mId">message id to search for</param>
         /// <returns>Message object, null if not found</returns>
+        /// <exception cref="ChatMail.Exceptions.DatabaseConnectionError">Throws when query could not be executed successfully.</exception>
         public Message GetMessageByMessageId(int mId)
         {
             Logger.debug("Selecting all messages by mId \"" + mId + "\".", "ChatMail.Database.Handler");
@@ -174,6 +179,7 @@ namespace ChatMail.Database
         /// </summary>
         /// <param name="mId">Message ID to scan</param>
         /// <returns>List of all receivers of this message</returns>
+        /// <exception cref="ChatMail.Exceptions.DatabaseConnectionError">Throws when query could not be executed successfully.</exception>
         public List<User> GetReceiversByMessageId(int mId)
         {
             Logger.debug("Selecting all receivers by mId \"" + mId + "\".", "ChatMail.Database.Handler");
@@ -200,6 +206,7 @@ namespace ChatMail.Database
         /// <param name="mId"></param>
         /// <param name="rId"></param>
         /// <returns></returns>
+        /// <exception cref="ChatMail.Exceptions.DatabaseConnectionError">Throws when query could not be executed successfully.</exception>
         private bool InsertMessageReceiver(int mId, int rId)
         {
             Logger.debug("Inserting MessageReceiver relation.", "ChatMail.Database.Handler");
@@ -228,6 +235,7 @@ namespace ChatMail.Database
         /// </summary>
         /// <param name="message">Message object to insert</param>
         /// <returns>info about success</returns>
+        /// <exception cref="ChatMail.Exceptions.DatabaseConnectionError">Throws when query could not be executed successfully.</exception>
         public bool InsertMessage(Message message)
         {
             Logger.debug("Inserting Message.", "ChatMail.Database.Handler");
@@ -281,6 +289,7 @@ namespace ChatMail.Database
         /// </summary>
         /// <param name="user">User object ot insert</param>
         /// <returns>Info about success</returns>
+        /// <exception cref="ChatMail.Exceptions.DatabaseConnectionError">Throws when query could not be executed successfully.</exception>
         public bool InsertUser(User user)
         {
             Logger.debug("Inserting User.", "ChatMail.Database.Handler");
